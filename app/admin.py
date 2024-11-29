@@ -8,3 +8,7 @@ def homeAdmin():
 @app.route("/produtoadmin")
 def produtoAdmin():
     return render_template('produtoAdmin.html')
+
+@app.route("/listaprodutoadmin")
+def listaProdutoAdmin():
+    return render_template('listaProdutoAdmin.html')
