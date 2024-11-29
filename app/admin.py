@@ -3,4 +3,8 @@ from flask import render_template, request
 
 @app.route("/admin")
 def homeAdmin():
-    return render_template('admin.hmtl', par1='Chama', par2='Admin')
+    return render_template('homeAdmin.hmtl', par1='Chama', par2='Admin')
+
+@app.route("/produtoadmin")
+def produtoAdmin():
+    return render_template('produtoAdmin.html')
