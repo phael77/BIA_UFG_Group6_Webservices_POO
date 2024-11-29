@@ -8,3 +8,6 @@ Todo list
 - forma de pagamento
 - menu
 - entrar
+- adicionar forma de pagamento
+- checkout 
+- home(aquele que esta no checkout)
