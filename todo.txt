@@ -11,4 +11,4 @@ Todo list
 - adicionar forma de pagamento
 - checkout 
 - home(aquele que esta no checkout)
-- Adicionar produto
+- Adicionar produto, certo?
