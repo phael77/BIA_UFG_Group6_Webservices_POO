@@ -1,0 +1,10 @@
+Todo list
+
+*REQUISIÇÕES*
+
+- Carrinho de compras
+- login
+- cadastro
+- forma de pagamento
+- menu
+- entrar

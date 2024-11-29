@@ -1,0 +1,15 @@
+app
+-templates
+--templs
+---formTemplate.html
+--admin.html
+--index.html
+--login.html
+-static
+--css
+--img
+--js
+__init__.py
+admin.py
+client.py
+mainFlask.py
