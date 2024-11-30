@@ -119,16 +119,12 @@ body, html {
   position: relative;
 }
 
-.cart {
-  position: relative;
-}
-
 .cart-dropdown {
-  display: none; /* Hidden by default */
-  position: absolute; /* Position it relative to the header buttons */
-  top: 100%; /* Position it below the Cart button */
+  display: none; 
+  position: absolute; 
+  top: 100%;
   left: 0;
-  width: 200px; /* Adjust the width as necessary */
+  width: 200px;
   padding-bottom: 10px;
   padding-top: 10px;
   background-color: rgb(230, 230, 230);
@@ -137,12 +133,8 @@ body, html {
   text-align: center;
 }
 
-.cart.cart:hover .cart-dropdown {
-  display: block;
-}
-
-.cart.cart:hover .cart-dropdown, .cart-dropdown:hover {
-  display: block;
+.header-buttons:hover .cart-dropdown {
+  display: block; /* Show the dropdown when hovering over the header buttons */
 }
 
 .cart-dropdown p {
