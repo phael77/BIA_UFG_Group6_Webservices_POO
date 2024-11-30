@@ -13,3 +13,4 @@ toggleButton.addEventListener('click', () => {
 
   siteTitle.classList.toggle('move-when-menu-hidden')
 });
+
