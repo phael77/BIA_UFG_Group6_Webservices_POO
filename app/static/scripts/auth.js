@@ -1,47 +1,4 @@
-// Get references to the sidebar and toggle button
-const sidebar = document.querySelector('.sidebar');
-const toggleButton = document.querySelector('.toggle-sidebar');
-const siteTitle = document.querySelector('.site-title');
-
-// Add event listener to the toggle button
-toggleButton.addEventListener('click', () => {
-  // Toggle the 'visible' class to show/hide the sidebar
-  sidebar.classList.toggle('visible');
-  
-  // Toggle the button's movement class
-  toggleButton.classList.toggle('shift-right-when-menu-visible');
-
-  siteTitle.classList.toggle('shift-right-when-menu-visible');
-});
-
-const searchInput = document.getElementById('searchInput');
-const searchDropdown = document.querySelector('.search-bar-suggestions');
-
-// Search bar focus event
-searchInput.addEventListener('focus', function() {
-  searchDropdown.style.display = 'block';
-});
-
-// Search bar input event
-searchInput.addEventListener('input', function() {
-  if (searchInput.value) {
-    searchDropdown.style.display = 'block';
-  } else {
-    searchDropdown.style.display = 'none';
-  }
-});
-
-// Close search dropdown if clicking outside
-document.addEventListener('click', function(event) {
-  if (!searchInput.contains(event.target) && !searchDropdown.contains(event.target)) {
-    searchDropdown.style.display = 'none';
-  }
-});
-
-// Prevent dropdown closing when clicking inside the dropdown
-searchDropdown.addEventListener('click', function(event) {
-  event.stopPropagation();
-});
+// auth.js
 
 // Check if there are any users stored in localStorage
 function loadUsers() {
@@ -78,12 +35,11 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
   }
 });
 
-// Handle showing the register form
+// Handle showing the register form (redirect to /register)
 document.getElementById('showRegisterForm').addEventListener('click', function(event) {
   event.preventDefault();
-  // Switch from login to registration form
-  document.querySelector('.login').style.display = 'none';
-  document.querySelector('.register').style.display = 'block';
+  // Redirect to the /register page
+  window.location.href = '/register';
 });
 
 // Handle the registration form submission
@@ -117,8 +73,7 @@ document.getElementById('registerForm').addEventListener('submit', function(even
 
   alert("Account created successfully!");
   // Optionally redirect to login page after registration
-  document.querySelector('.register').style.display = 'none';
-  document.querySelector('.login').style.display = 'block';
+  window.location.href = '/login'; // Redirect to login page after successful registration
 });
 
 // (Optional) Add some initial users for testing purposes, you can remove or modify this in the real app.

@@ -3,15 +3,15 @@ from flask import render_template, request
 
 @app.route("/")
 def home():
-    return render_template('index.html', par1="Boa tarde", par2="Cliente")
+    return render_template('index.html')
 
 @app.route("/login")
 def login():
     return render_template('login.html')
 
-@app.route("/signin")
-def signin():
-    return render_template('cadastro.html')
+@app.route("/register")
+def register():
+    return render_template('register.html')
 
 @app.route("/autentica", methods=['POST'])
 def autentica():

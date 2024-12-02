@@ -6,6 +6,7 @@
     <title>{% block title %}Empresa Confiável{% endblock %}</title>
     <link rel="stylesheet" href="static/styles/base.css">
     <link rel="stylesheet" href="static/styles/login.css">
+    <link rel="stylesheet" href="static/styles/register.css">
     <!-- Include Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
@@ -22,12 +23,10 @@
             <!-- Magnifying glass icon on the right -->
             <i class="fa fa-search" id="searchIcon"></i>
             <div class="search-bar-suggestions">
-            <p>
-                Sugestões de pesquisa
-            </p>
-            <p>Sugestão 1</p>
-            <p>Sugestão 2</p>
-            <p>Sugestão 3</p>
+                <p>Sugestões de pesquisa</p>
+                <p>Sugestão 1</p>
+                <p>Sugestão 2</p>
+                <p>Sugestão 3</p>
             </div>
         </div>
   
@@ -41,22 +40,24 @@
                 <i class="fa fa-shopping-cart" style="font-size:24px"></i>
             </button>
             <div class="cart-dropdown">
-                <p>
-                    Conteúdo do carrinho
-                </p>
-                <button class="cart-page-button">Go to cart</button>
+                <p>Conteúdo do carrinho</p>
+                <a href="#">
+                    <button class="cart-page-button">Go to cart</button>
+                </a>
             </div>
             <!-- Profile button with user icon -->
             <button class="profile">
                 <i class="fa fa-user" style="font-size:24px"></i>
             </button>
-            <div class="profile-dropdown-unlogged">
+            <div class="profile-dropdown-unlogged" id="profile-dropdown-unlogged">
                 <a href="/login">
-                <button class="login-button"> Login</button>
+                    <button class="login-button">Login</button>
                 </a>
-            </div> 
+                <a href="/register">
+                    <button class="register-button">Register</button>
+                </a>
+            </div>
         </div>
-
     </header>
 
     <div class="sidebar">
@@ -92,6 +93,10 @@
         </div>
     </footer>
 
-    <script src="static/scripts.js"></script>
+    <!-- Include the separated JavaScript files -->
+    <script src="static/scripts/sidebar.js"></script>
+    <script src="static/scripts/search.js"></script>
+    <script src="static/scripts/auth.js"></script>
+
 </body>
 </html>

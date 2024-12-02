@@ -6,7 +6,7 @@
 
 <div class="login">
 
-    <form class="card" id="loginForm">
+    <form class="card" id="loginForm" method="POST" action="/login">
         <div class="card-header">
             <h2>Login</h2>
         </div>
@@ -25,7 +25,7 @@
 
         <div class="card-footer">
             <input type="submit" value="Login" class="submit">
-            <a href="#" id="showRegisterForm" class="recuperar_senha">Criar conta</a>
+            <a href="/register" id="showRegisterForm" class="recuperar_senha">Criar conta</a>
         </div>
 
         <!-- To show error message -->
