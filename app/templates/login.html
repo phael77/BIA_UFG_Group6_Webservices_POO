@@ -1,48 +1,39 @@
 {% extends "base.html" %}
 
-{% block title %}Login - My Website{% endblock %}
+{% block title %}Login - Empresa Confiável{% endblock %}
 
 {% block content %}
 
 <div class="login">
 
-    <form class="card">
-
+    <form class="card" id="loginForm">
         <div class="card-header">
-
             <h2>Login</h2>
-
         </div>
 
         <div class="card-content">
-
             <div class="card-content-area">
-
                 <label for="usuario">Usuário</label>
-
-                <input type="text" id="usuario" autocomplete="off">
-
+                <input type="text" id="username" name="username" autocomplete="off" required>
             </div>
 
             <div class="card-content-area">
-
                 <label for="password">Senha</label>
-
-                <input type="password" id="password" autocomplete="off">
-
+                <input type="password" id="password" name="password" autocomplete="off" required>
             </div>
-
         </div>
 
         <div class="card-footer">
-
-            <input type="submit" value="login" class="submit">
-
-            <a href="#" class="recuperar_senha">Esqueceu a senha?</a>
-
+            <input type="submit" value="Login" class="submit">
+            <a href="#" id="showRegisterForm" class="recuperar_senha">Criar conta</a>
         </div>
 
+        <!-- To show error message -->
+        <div id="errorMessage" style="color: red; display: none;">
+            Invalid username or password.
+        </div>
     </form>
 
 </div>
+
 {% endblock %}
