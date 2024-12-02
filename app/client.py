@@ -17,3 +17,7 @@ def signin():
 def autentica():
     user = request.form['user']
 
+@app.route("/cart")
+def carrinho():
+    return render_template('cart.html')
+

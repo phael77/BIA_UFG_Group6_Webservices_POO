@@ -1,0 +1,103 @@
+/* Geral */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f9f9f9;
+}
+
+header, footer {
+    background: #333;
+    color: white;
+    text-align: center;
+    padding: 1em 0;
+}
+
+nav a {
+    margin: 0 15px;
+    color: white;
+    text-decoration: none;
+}
+
+/* Carrinho */
+.cart {
+    margin: 2em auto;
+    width: 80%;
+    background: white;
+    padding: 1em;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1em 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.cart-item:last-child {
+    border-bottom: none;
+}
+
+.cart-item-details {
+    display: flex;
+    align-items: center;
+}
+
+.cart-item-image {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    margin-right: 15px;
+}
+
+.cart-item-info h2 {
+    margin: 0;
+    font-size: 1.1em;
+}
+
+.cart-item-info p {
+    font-size: 0.9em;
+    color: #777;
+}
+
+.cart-item-quantity,
+.cart-item-total {
+    font-size: 1.1em;
+}
+
+button {
+    padding: 0.5em 1em;
+    border: none;
+    border-radius: 4px;
+    background: #007bff;
+    color: white;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background: #0056b3;
+}
+
+button.remove {
+    background: #dc3545;
+}
+
+button.remove:hover {
+    background: #b02a37;
+}
+
+.cart-summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1em 0;
+    border-top: 1px solid #ddd;
+}
+
+.cart-summary p {
+    font-size: 1.2em;
+}
