@@ -2,11 +2,11 @@ Todo list
 
 *REQUISIÇÕES*
 
-- Carrinho de compras
+- Carrinho de compras V
 - login V
 - cadastro
 - forma de pagamento
-- menu
+- catalogo
 - adicionar forma de pagamento
 - checkout 
 - home(aquele que esta no checkout)
