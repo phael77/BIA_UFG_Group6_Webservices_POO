@@ -159,4 +159,4 @@ def add_to_cart(product_id):
 # Página de catálogo
 @app.route("/catalogo")
 def catalogo():
-    return render_template('catalogue.html')
+    return render_template('catalogue.html', PRODUCTS=PRODUCTS)
