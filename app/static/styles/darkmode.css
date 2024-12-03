@@ -286,3 +286,19 @@ body.dark-mode .product-img {
     box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1); /* Lighter shadow for dark mode */
     transition: none; /* Disable transition */
 }
+
+/* Dark Mode for Product Size Selector */
+body.dark-mode .product-size label {
+    color: #ddd; /* Lighter text color for size label in dark mode */
+}
+
+body.dark-mode .product-size select {
+    background-color: #333; /* Dark background for select */
+    color: white; /* Light text color inside the select */
+    border-color: #555; /* Darker border for select */
+}
+
+body.dark-mode .product-size select:focus {
+    outline-color: #e91e63; /* Bright pink outline on focus */
+    border-color: #e91e63; /* Bright pink border on focus */
+}

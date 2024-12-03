@@ -7,19 +7,29 @@
     <div class="product-container">
         <!-- Product Image -->
         <div class="product-image">
-            <img src="static/images/product.jpg" alt="Product Image" class="product-img">
+            <img src="{{ product.image }}" alt="Product Image" class="product-img">
         </div>
 
         <!-- Product Information -->
         <div class="product-details">
-            <h1 class="product-title">Nome do Produto</h1>
-            <p class="product-description">
-                Este é um exemplo de descrição do produto. Aqui você pode colocar informações detalhadas sobre o produto, suas características, vantagens e outros dados importantes para o cliente.
-            </p>
-            <p class="product-price">R$ 99,99</p>
+            <h1 class="product-title">{{ product.name }}</h1>
+            <p class="product-description">{{ product.description }}</p>
+            <p class="product-price">R$ {{ product.price }}</p>
+            
+            <!-- Product Quantity -->
             <div class="product-quantity">
                 <label for="quantity">Quantidade:</label>
                 <input type="number" id="quantity" name="quantity" value="1" min="1" max="100">
+            </div>
+
+            <!-- Product Size Selector -->
+            <div class="product-size">
+                <label for="size">Tamanho:</label>
+                <select id="size" name="size">
+                    {% for size in product.sizes %}
+                        <option value="{{ size }}">{{ size }}</option>
+                    {% endfor %}
+                </select>
             </div>
 
             <button class="add-to-cart-button" onclick="addToCart()">Adicionar ao carrinho</button>
@@ -30,10 +40,11 @@
 <script>
     function addToCart() {
         const quantity = document.getElementById('quantity').value;
+        const size = document.getElementById('size').value;
         const productTitle = document.querySelector('.product-title').textContent;
         const productPrice = document.querySelector('.product-price').textContent;
 
-        alert(`${productTitle} foi adicionado ao carrinho com ${quantity} item(s).`);
+        alert(`${productTitle} (${size}) foi adicionado ao carrinho com ${quantity} item(s).`);
         
         // Here you would add the item to the cart (localStorage, backend, etc.)
         // This is just a simple alert for demonstration.

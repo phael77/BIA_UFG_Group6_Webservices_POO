@@ -4,15 +4,8 @@ import json
 import os
 
 # Product data for demonstration (static)
-PRODUCTS = [
-    {
-        "id": 1,
-        "name": "Produto Exemplo",
-        "description": "Este é um exemplo de descrição do produto. Aqui você pode colocar informações detalhadas sobre o produto.",
-        "price": 99.99,
-        "image": "static/images/product.jpg"
-    }
-]
+with open('app/products.json', 'r', encoding='utf-8') as file:
+    PRODUCTS = json.load(file)
 
 # Página inicial
 @app.route("/")
