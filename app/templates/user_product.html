@@ -7,6 +7,7 @@
     <div class="product-container">
         <!-- Product Image -->
         <div class="product-image">
+            <!-- Check if product.image exists, if so display the product image, otherwise use a default image -->
             {% if product.image %}
                 <img src="{{ url_for('static', filename='images/' + product.image) }}" alt="Product Image" class="product-img">
             {% else %}
@@ -19,9 +20,9 @@
             <h1 class="product-title">{{ product.name }}</h1>
             <p class="product-description">{{ product.description }}</p>
             <p class="product-price">R$ {{ '%.2f' % product.price }}</p>
-
+            
             <!-- Add to Cart Form -->
-            <form id="add-to-cart-form" action="{{ url_for('add_to_cart', product_id=product.id) }}" method="POST">
+            <form action="{{ url_for('add_to_cart', product_id=product.id) }}" method="POST">
                 <input type="hidden" name="name" value="{{ product.name }}">
                 <input type="hidden" name="price" value="{{ product.price }}">
                 <input type="hidden" name="image" value="{{ product.image }}">
@@ -43,27 +44,9 @@
                 </div>
 
                 <!-- Add to Cart Button -->
-                <button type="button" class="add-to-cart-button" onclick="showLoginPopup()">Adicionar ao carrinho</button>
+                <button type="submit" class="add-to-cart-button">Adicionar ao carrinho</button>
             </form>
         </div>
     </div>
 </main>
-
-<!-- Modal for Login Alert -->
-<div id="login-popup" class="modal">
-    <div class="modal-content">
-        <span class="close" onclick="closePopup()">&times;</span>
-        <h2>Você precisa estar logado para adicionar o produto ao carrinho!</h2>
-        <p><a href="/login">Faça login</a> ou <a href="/register">Cadastre-se</a> para continuar.</p>
-    </div>
-</div>
-
-{% endblock %}
-
-{% block scripts %}
-<!-- Include external JavaScript file -->
-{% endblock %}
-
-{% block styles %}
-<!-- Include external CSS file -->
 {% endblock %}

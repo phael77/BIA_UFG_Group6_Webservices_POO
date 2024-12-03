@@ -2,7 +2,7 @@ from flask import Flask
 import os
 
 app = Flask(__name__)
-app.secret_key = 'your_secret_key'  # Ensure to set a secret key for session management
+app.secret_key = '1234567890'  # Ensure to set a secret key for session management
 
 # Import routes from the routes file
 from app.client import *

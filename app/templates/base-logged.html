@@ -4,10 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Empresa Confiável{% endblock %}</title>
-    <link rel="stylesheet" href="static/styles/base.css">
-    <link rel="stylesheet" href="static/styles/login.css">
-    <link rel="stylesheet" href="static/styles/register.css">
-    <link rel="stylesheet" href="static/styles/darkmode.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/base.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/login.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/register.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/darkmode.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/cart.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/product.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/catalogue.css') }}">
     <!-- Include Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
@@ -17,7 +20,7 @@
         <div class="site-title">
             <a href="/user">Empresa Confiável</a>
         </div>
-        <a href="/catalogo">
+        <a href="/user/catalogo">
             <button class="catalogue-button">Catalogue</button>
         </a>        <!-- Search Bar with Magnifying Glass Icon -->
         <div class="search-bar">
