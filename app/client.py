@@ -1,21 +1,56 @@
 from flask import render_template, request, redirect, url_for, jsonify, session
-from app import app
 import json
 import os
+from app import app
 
 # Product data for demonstration (static)
 with open('app/products.json', 'r', encoding='utf-8') as file:
     PRODUCTS = json.load(file)
 
+# File path for user data
+USERS_FILE = 'app/users.json'
+
+# Function to load users from the backend (JSON file)
+def load_users():
+    if os.path.exists(USERS_FILE):
+        with open(USERS_FILE, 'r', encoding='utf-8') as file:
+            return json.load(file)
+    return []
+
+# Function to save users to the backend (JSON file)
+def save_users(users):
+    with open(USERS_FILE, 'w', encoding='utf-8') as file:
+        json.dump(users, file, ensure_ascii=False, indent=4)
+
+# API endpoint to get users
+@app.route("/api/users", methods=["GET"])
+def get_users():
+    users = load_users()
+    return jsonify(users)
+
+# API endpoint to add a new user
+@app.route("/api/users", methods=["POST"])
+def create_user():
+    new_user = request.json
+    users = load_users()
+
+    # Check if username already exists
+    if any(user['username'] == new_user['username'] for user in users):
+        return jsonify({"error": "Username already exists"}), 400
+
+    # Add new user to the list
+    users.append(new_user)
+    save_users(users)
+    return jsonify(new_user), 201
+
 # Página inicial
 @app.route("/")
 def home():
     if 'username' in session:
-        # Redireciona para a página específica do perfil
         if session.get('profile') == 1:
-            return redirect(url_for('home_loggedin'))  # Usuário comum
+            return redirect(url_for('home_loggedin'))
         elif session.get('profile') == 2:
-            return redirect(url_for('home_admin'))  # Administrador
+            return redirect(url_for('home_admin'))
     return render_template('index.html')
 
 # Página do usuário logado
@@ -35,18 +70,50 @@ def login():
         username = request.form['username']
         password = request.form['password']
         
-        # Simulação de verificação de usuário (substitua por sua lógica real de autenticação)
-        if username == "user" and password == "password":
+        users = load_users()
+        user = next((u for u in users if u['username'] == username and u['password'] == password), None)
+        
+        if user:
             session['username'] = username
-            session['profile'] = 1  # Usuário comum
-            return redirect(url_for('home_loggedin'))
-        elif username == "admin" and password == "admin":
-            session['username'] = username
-            session['profile'] = 2  # Administrador
-            return redirect(url_for('home_admin'))
+            session['profile'] = user['profile']
+            if user['profile'] == 1:
+                return redirect(url_for('home_loggedin'))
+            elif user['profile'] == 2:
+                return redirect(url_for('home_admin'))
         else:
             return render_template('login.html', error="Usuário ou senha inválidos.")
     return render_template('login.html')
+
+# Página de logout
+@app.route("/logout")
+def logout():
+    session.pop('username', None)
+    session.pop('profile', None)
+    session.pop('cart', None)  # Limpa o carrinho
+    return redirect(url_for('home'))
+
+# Página de registro
+@app.route("/register", methods=["GET", "POST"])
+def register():
+    if request.method == "POST":
+        username = request.form['username']
+        password = request.form['password']
+        confirmPassword = request.form['confirmPassword']
+        
+        if password != confirmPassword:
+            return render_template('register.html', error="As senhas não coincidem.")
+        
+        users = load_users()
+        if any(user['username'] == username for user in users):
+            return render_template('register.html', error="Nome de usuário já existe.")
+        
+        new_user = {'username': username, 'password': password, 'profile': 1}  # Default profile is 'user'
+        users.append(new_user)
+        save_users(users)
+        
+        return redirect(url_for('login'))
+    
+    return render_template('register.html')
 
 # Página de produto (exemplo estático)
 @app.route("/product/<int:product_id>")
@@ -89,14 +156,7 @@ def add_to_cart(product_id):
     
     return redirect(url_for('cart'))  # Redireciona para a página do carrinho
 
-# Roteamento para logout
-@app.route("/logout")
-def logout():
-    session.pop('username', None)
-    session.pop('profile', None)
-    session.pop('cart', None)  # Limpa o carrinho
-    return redirect(url_for('home'))
-
+# Página de catálogo
 @app.route("/catalogo")
 def catalogo():
     return render_template('catalogue.html')
