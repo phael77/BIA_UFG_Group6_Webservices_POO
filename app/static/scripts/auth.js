@@ -1,93 +1,105 @@
-// auth.js
-
-// Check if there are any users stored in localStorage
-function loadUsers() {
-  const users = JSON.parse(localStorage.getItem('users')) || [];
-  return users;
+// Função para carregar os usuários a partir do backend
+async function loadUsers() {
+  try {
+    const response = await fetch('/api/users');
+    if (!response.ok) {
+      throw new Error('Erro ao carregar os usuários.');
+    }
+    const users = await response.json();
+    return users;
+  } catch (error) {
+    console.error('Erro ao carregar os usuários:', error);
+    return [];
+  }
 }
 
-// Save the list of users to localStorage
-function saveUsers(users) {
-  localStorage.setItem('users', JSON.stringify(users));
+// Função para salvar os usuários no backend
+async function saveUsers(users) {
+  try {
+    const response = await fetch('/api/users', {
+      method: 'PUT',  // Usando PUT para atualizar o arquivo JSON
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(users),
+    });
+
+    if (!response.ok) {
+      throw new Error('Erro ao salvar os usuários.');
+    }
+  } catch (error) {
+    console.error('Erro ao salvar os usuários:', error);
+  }
 }
 
-// Handle the login logic
-document.getElementById('loginForm').addEventListener('submit', function(event) {
+// Lógica de login
+document.getElementById('loginForm').addEventListener('submit', async function(event) {
   event.preventDefault();
 
   const username = document.getElementById('username').value;
   const password = document.getElementById('password').value;
 
-  const users = loadUsers(); // Get users from localStorage
+  const users = await loadUsers(); // Obter usuários do backend
 
-  // Check if the username and password match any stored users
+  // Verificar se o nome de usuário e senha coincidem com algum usuário armazenado
   const user = users.find(user => user.username === username && user.password === password);
 
   if (user) {
-      // Login successful, hide the error message
       document.getElementById('errorMessage').style.display = 'none';
-      alert('Login successful!'); // Redirect or show success message
-      // Redirect to another page (e.g., dashboard)
-      // window.location.href = "/dashboard";  // Uncomment if needed
+      alert('Login bem-sucedido!');
+
+      // Armazenar os dados do usuário logado, pode ser no sessionStorage ou localStorage
+      localStorage.setItem('loggedInUser', JSON.stringify(user));
+
+      // Redirecionar para a página inicial ou página específica dependendo do perfil
+      if (user.profile === 'admin') {
+          window.location.href = '/admin'; // Redirecionar para a página de admin
+      } else {
+          window.location.href = '/'; // Redirecionar para a página inicial
+      }
   } else {
-      // If no match, show the error message
       document.getElementById('errorMessage').style.display = 'block';
   }
 });
 
-// Handle showing the register form (redirect to /register)
+// Exibir o formulário de registro
 document.getElementById('showRegisterForm').addEventListener('click', function(event) {
   event.preventDefault();
-  // Redirect to the /register page
   window.location.href = '/register';
 });
 
-// Handle the registration form submission
-document.getElementById('registerForm').addEventListener('submit', function(event) {
+// Enviar o formulário de registro
+document.getElementById('registerForm').addEventListener('submit', async function(event) {
   event.preventDefault();
 
   const username = document.getElementById('username').value;
-  const email = document.getElementById('email').value;
   const password = document.getElementById('password').value;
   const confirmPassword = document.getElementById('confirmPassword').value;
 
-  const users = loadUsers(); // Get users from localStorage
+  const users = await loadUsers(); // Obter usuários do backend
 
-  // Check if username already exists
+  // Verificar se o nome de usuário já existe
   const existingUser = users.find(user => user.username === username);
 
   if (existingUser) {
-    alert("Username already taken. Please choose another one.");
+    alert("Nome de usuário já existe. Por favor, escolha outro.");
     return;
   }
 
-  // Check if passwords match
+  // Verificar se as senhas coincidem
   if (password !== confirmPassword) {
-    alert("Passwords do not match.");
+    alert("As senhas não coincidem.");
     return;
   }
 
-  // Add the new user to the users list
-  users.push({ username, email, password });
-  saveUsers(users);
+  // Adicionar o novo usuário com um nível de perfil
+  const profile = 'user'; // Por padrão, o usuário será um 'user'
+  const newUser = { username, password, profile };
+  users.push(newUser);
 
-  alert("Account created successfully!");
-  // Optionally redirect to login page after registration
-  window.location.href = '/login'; // Redirect to login page after successful registration
+  // Salvar os usuários no backend
+  await saveUsers(users);
+
+  alert("Conta criada com sucesso!");
+  window.location.href = '/login'; // Redirecionar para a página de login
 });
-
-// (Optional) Add some initial users for testing purposes, you can remove or modify this in the real app.
-function initUsers() {
-  const users = loadUsers();
-
-  // Add default users if there are no users in localStorage
-  if (users.length === 0) {
-      users.push({ username: 'user1', password: 'password123' });
-      users.push({ username: 'user2', password: 'password456' });
-      users.push({ username: 'user3', password: 'password789' });
-      saveUsers(users);
-  }
-}
-
-// Initialize default users (run only once or whenever needed)
-initUsers();
