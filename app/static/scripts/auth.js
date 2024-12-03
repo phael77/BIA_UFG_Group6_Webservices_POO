@@ -48,19 +48,17 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
       document.getElementById('errorMessage').style.display = 'none';
       alert('Login bem-sucedido!');
 
-      // Armazenar os dados do usuário logado, pode ser no sessionStorage ou localStorage
+      // Armazenar os dados do usuário logado no localStorage
       localStorage.setItem('loggedInUser', JSON.stringify(user));
 
       // Redirecionar para a página inicial ou página específica dependendo do perfil
-      if (user.profile === 'admin') {
-          window.location.href = '/admin'; // Redirecionar para a página de admin
-      } else {
-          window.location.href = '/'; // Redirecionar para a página inicial
-      }
+      window.location.href = '/'; // Redirecionar para a página inicial
+      
   } else {
       document.getElementById('errorMessage').style.display = 'block';
   }
 });
+
 
 // Exibir o formulário de registro
 document.getElementById('showRegisterForm').addEventListener('click', function(event) {
@@ -102,4 +100,51 @@ document.getElementById('registerForm').addEventListener('submit', async functio
 
   alert("Conta criada com sucesso!");
   window.location.href = '/login'; // Redirecionar para a página de login
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+  // Check if a user is logged in by checking localStorage
+  const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+  
+  if (loggedInUser) {
+    // Show logged-in user profile and logout button
+    const profileButton = document.querySelector('.profile');
+    const profileDropdown = document.querySelector('.profile-dropdown');
+    const profileDropdownUnlogged = document.querySelector('.profile-dropdown-unlogged');
+
+    // Show the profile dropdown for logged-in users
+    profileButton.style.display = 'block';
+    profileDropdown.style.display = 'block';
+    profileDropdownUnlogged.style.display = 'none';
+
+    // Show welcome message and logout button
+    const welcomeMessage = profileDropdown.querySelector('p');
+    welcomeMessage.textContent = `Welcome, ${loggedInUser.username}`;
+    
+    // Add logout functionality
+    const logoutButton = profileDropdown.querySelector('.logout-button');
+    logoutButton.addEventListener('click', function() {
+      localStorage.removeItem('loggedInUser'); // Remove user from localStorage
+      window.location.href = '/'; // Redirect to home page
+    });
+
+    // Admin users (profile === 'admin')
+    if (loggedInUser.profile === 'admin') {
+      const adminButton = document.createElement('a');
+      adminButton.href = '/admin';
+      adminButton.innerHTML = '<button class="admin-button">Admin Dashboard</button>';
+      profileDropdown.appendChild(adminButton);
+    }
+
+  } else {
+    // Show login and register buttons for guests
+    const profileButton = document.querySelector('.profile');
+    const profileDropdown = document.querySelector('.profile-dropdown');
+    const profileDropdownUnlogged = document.querySelector('.profile-dropdown-unlogged');
+
+    // Hide logged-in profile options
+    profileButton.style.display = 'none';
+    profileDropdown.style.display = 'none';
+    profileDropdownUnlogged.style.display = 'block';
+  }
 });

@@ -40,24 +40,10 @@ def home():
     if 'username' in session:
         # Redireciona para a página específica do perfil
         if session.get('profile') == 1:
-            return redirect(url_for('home_logged'))  # Usuário comum
+            return redirect(url_for('index-logged'))  # Usuário comum
         elif session.get('profile') == 2:
             return redirect(url_for('home_admin'))  # Administrador
-    return render_template('index.html')
-
-# Página home para usuários comuns (perfil 1)
-@app.route("/home/logged")
-def home_logged():
-    if 'username' in session and session.get('profile') == 1:
-        return render_template('home_logged.html')  # Página exclusiva para usuários comuns
-    return redirect(url_for('login'))  # Caso não esteja logado ou o perfil não seja 1
-
-# Página home para administradores (perfil 2)
-@app.route("/home/admin")
-def home_admin():
-    if 'username' in session and session.get('profile') == 2:
-        return render_template('home_admin.html')  # Página exclusiva para administradores
-    return redirect(url_for('login'))  # Caso não esteja logado ou o perfil não seja 2
+    return render_template('index-logged.html')
 
 # Página de login
 @app.route("/login", methods=["GET", "POST"])
