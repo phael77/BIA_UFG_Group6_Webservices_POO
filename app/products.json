@@ -13,14 +13,12 @@
     },
     {
         "id": 2,
-        "name": "Blusinha",
-        "description": "AAAAAAAAAAAAAAAAAAAAAAAAA",
-        "price": 28.77,
+        "name": "Eu",
+        "description": "Talvez não goste tanto de programar, afinal",
+        "price": 2999.9,
         "image": "gandalf2.jpg",
         "sizes": [
-            "G",
-            "GG",
-            "Felps"
+            "XXL"
         ]
     },
     {
