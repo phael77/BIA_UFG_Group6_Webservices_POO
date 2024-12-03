@@ -1,0 +1,86 @@
+/* Estilo geral */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+/* Cabeçalho */
+.header {
+    background-color: #ff00a1;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+}
+
+.header .logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.header .menu a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: bold;
+}
+
+.header .menu a.active {
+    text-decoration: underline;
+}
+
+/* Seção do catálogo */
+.catalog {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.catalog h1 {
+    text-align: center;
+    color: #ff00a1;
+}
+
+.catalog-item {
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin: 15px 0;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    transition: transform 0.2s;
+}
+
+.catalog-item h2 {
+    margin: 0;
+    color: #333;
+}
+
+.catalog-item p {
+    margin: 5px 0 0;
+    color: #555;
+}
+
+.catalog-item:hover {
+    transform: scale(1.02);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Rodapé */
+.footer {
+    background-color: #f1f1f1;
+    text-align: center;
+    padding: 10px 20px;
+    margin-top: 20px;
+}
+
+.footer a {
+    color: #ff00a1;
+    text-decoration: none;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}

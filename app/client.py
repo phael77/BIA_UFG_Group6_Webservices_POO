@@ -97,3 +97,6 @@ def logout():
     session.pop('cart', None)  # Limpa o carrinho
     return redirect(url_for('home'))
 
+@app.route("/catalogo")
+def catalogo():
+    return render_template('catalogue.html')
