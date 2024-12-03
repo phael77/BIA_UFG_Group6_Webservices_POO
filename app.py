@@ -4,7 +4,7 @@ from flask import Flask
 app = Flask(__name__)
 
 # Importa as rotas
-from app.client import *
+from app.routes import *
 
 if __name__ == "__main__":
     app.run(debug=True)
