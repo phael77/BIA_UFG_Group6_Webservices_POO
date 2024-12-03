@@ -1,1 +1,14 @@
-[]
+[
+    {
+        "id": 1,
+        "name": "Teste",
+        "description": "Testando",
+        "price": 1000.0,
+        "sizes": [
+            "P",
+            "M",
+            "GG"
+        ],
+        "image": null
+    }
+]

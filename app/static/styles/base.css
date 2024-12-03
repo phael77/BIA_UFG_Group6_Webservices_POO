@@ -325,9 +325,7 @@ main {
   border: none;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  text-align: left;
   display: flex; /* Ensure icons and text are aligned horizontally */
-  align-items: center; /* Vertically center the content */
 }
 
 .profile-dropdown-unlogged .logout-button i {
