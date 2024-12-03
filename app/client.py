@@ -128,3 +128,9 @@ def api_save_users():
     users = request.get_json()  # Obtém os dados enviados no corpo da requisição
     save_users(users)  # Salva os usuários no arquivo
     return jsonify({"message": "Usuários atualizados com sucesso!"}), 200
+
+# Endpoint para exibir o carrinho de compras
+@app.route("/cart")
+def carrinho():
+    return render_template('cart.html')
+

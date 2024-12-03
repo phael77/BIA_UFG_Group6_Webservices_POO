@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}Cart{% endblock %}
+
+{% block content %}
+
+<h1>Carrinho de Compras</h1>
+<section class="cart">
+    <div class="cart-item">
+        <div class="cart-item-details">
+            <img src="{{ url_for('static', filename='images/product1.jpg') }}" alt="Produto" class="cart-item-image">
+            <div class="cart-item-info">
+                <h2>Bermuda Social</h2>
+                <p>R$120,00</p>
+            </div>
+        </div>
+        <div class="cart-item-quantity">
+            <span>Quantidade: 1</span>
+        </div>
+        <div class="cart-item-total">
+            <span>Total: R$120,00</span>
+        </div>
+        <button class="remove">Remover</button>
+    </div>
+    <div class="cart-item">
+        <div class="cart-item-details">
+            <img src="{{ url_for('static', filename='images/product2.jpg') }}" alt="Produto" class="cart-item-image">
+            <div class="cart-item-info">
+                <h2>Conjunto de Babado</h2>
+                <p>R$85,00</p>
+            </div>
+        </div>
+        <div class="cart-item-quantity">
+            <span>Quantidade: 1</span>
+        </div>
+        <div class="cart-item-total">
+            <span>Total: R$85,00</span>
+        </div>
+        <button class="remove">Remover</button>
+    </div>
+    
+    <div class="cart-summary">
+        <p>Subtotal: <span>R$205,00</span></p>
+        <button class="checkout">Finalizar Compra</button>
+    </div>
+</section>
+
+{% endblock %}
