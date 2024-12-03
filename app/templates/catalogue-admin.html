@@ -1,0 +1,46 @@
+{% extends "base-admin.html" %}
+
+{% block title %}Catálogo de Produtos{% endblock %}
+
+{% block content %}
+
+<main class="catalog">
+    <h1>Catálogo de Produtos</h1>
+    
+    <div class="catalog-grid">
+        {% for product in PRODUCTS %}
+        <div class="catalog-item">
+            <!-- Product Image -->
+            <img src="{{ product.image }}" alt="{{ product.name }}" class="product-img">
+            
+            <!-- Product Name -->
+            <h2>{{ product.name }}</h2>
+            
+            <!-- Product Price -->
+            <p class="product-price">R$ {{ '%.2f' | format(product.price) }}</p>
+
+            <!-- Sizes List as Circular Balls -->
+            <div class="product-sizes">
+                <h4>Tamanhos: 
+                    {% for size in product.sizes %}
+                        <span class="size-ball">{{ size }}</span>{% if not loop.last %} {% endif %}
+                    {% endfor %}
+                </h4>
+            </div>
+            
+            <!-- Edit and Delete Buttons (Admin Controls) -->
+            <div class="admin-controls">
+                <a href="{{ url_for('admin_product', product_id=product.id) }}">
+                    <button class="edit-button">Editar</button>
+                </a>
+                
+                <form action="{{ url_for('admin_product', product_id=product.id) }}" method="POST" style="display:inline;">
+                    <button type="submit" name="delete" value="true" class="delete-button">Deletar</button>
+                </form>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</main>
+
+{% endblock %}
