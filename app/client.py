@@ -214,3 +214,50 @@ def admin_product(product_id):
 
     # Render template for editing product
     return render_template('admin_product.html', product=product)
+
+@app.route("/admin/product/add", methods=["GET", "POST"])
+def add_product():
+    if request.method == 'POST':
+        # Extract the form data
+        name = request.form['name']
+        description = request.form['description']
+        
+        try:
+            price = float(request.form['price'])  # Ensure price is a float
+        except ValueError:
+            return render_template('add_product.html', error="Preço inválido, deve ser um número.")
+        
+        sizes = request.form.getlist('sizes')  # Get list of sizes (P, M, G, GG, etc.)
+        
+        # If there's an 'other' size, add it
+        other_size = request.form.get('other_size')
+        if other_size:
+            sizes.append(other_size)
+        
+        # Handle the image upload
+        image = request.files['image']
+        image_filename = None
+        if image:
+            image_filename = os.path.join('app/static/images', image.filename)  # You can change the path if needed
+            image.save(image_filename)
+
+        # Create a new product ID (simple incrementing based on the current highest id)
+        product_id = max([p['id'] for p in PRODUCTS], default=0) + 1
+
+        # Create a new product object
+        new_product = {
+            'id': product_id,
+            'name': name,
+            'description': description,
+            'price': price,
+            'sizes': sizes,
+            'image': image_filename
+        }
+
+        # Add the new product to the PRODUCTS list and save it
+        PRODUCTS.append(new_product)
+        save_products(PRODUCTS)
+
+        return redirect(url_for('catalogo_admin'))  # Redirect to the admin catalog page
+
+    return render_template('add_product.html')  # Render the form to add a product
