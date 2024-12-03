@@ -43,7 +43,7 @@ def home():
             return redirect(url_for('index-logged'))  # Usuário comum
         elif session.get('profile') == 2:
             return redirect(url_for('home_admin'))  # Administrador
-    return render_template('index-logged.html')
+    return render_template('index.html')
 
 # Página de login
 @app.route("/login", methods=["GET", "POST"])
