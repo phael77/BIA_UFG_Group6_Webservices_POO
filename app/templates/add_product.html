@@ -3,7 +3,7 @@
 {% block title %}Adicionar Novo Produto{% endblock %}
 
 {% block content %}
-<main class="catalog">
+<main class="product-page">
     <h1>Adicionar Novo Produto</h1>
 
     <!-- Error message for invalid inputs -->
@@ -11,7 +11,7 @@
         <div class="error">{{ error }}</div>
     {% endif %}
     
-    <form method="POST" enctype="multipart/form-data">
+    <form method="POST" enctype="multipart/form-data" class="product-edit-form">
         <label for="name">Nome do Produto:</label>
         <input type="text" id="name" name="name" required>
     
@@ -22,19 +22,27 @@
         <input type="number" id="price" name="price" required step="0.01">
     
         <label for="sizes">Tamanhos:</label>
-        <div>
+        <div class="product-size" style="display: flex; gap: 20px; flex-wrap: wrap;">
             {% for size in ['P', 'M', 'G', 'GG'] %}
-                <input type="checkbox" id="size_{{ size }}" name="sizes" value="{{ size }}">
-                <label for="size_{{ size }}">{{ size }}</label>
+                <div>
+                    <input type="checkbox" id="size_{{ size }}" name="sizes" value="{{ size }}">
+                    <label for="size_{{ size }}">{{ size }}</label>
+                </div>
             {% endfor %}
-            <input type="checkbox" id="size_other" name="size_other" value="other" onchange="toggleOtherSizeInput()">
-            <label for="size_other">Outro</label>
-            <input type="text" id="other_size" name="other_size" placeholder="Digite outro tamanho" style="display: none;">
+            <div>
+                <input type="checkbox" id="size_other" name="size_other" value="other" onchange="toggleOtherSizeInput()">
+                <label for="size_other">Outro</label>
+                <input type="text" id="other_size" name="other_size" placeholder="Digite outro tamanho" style="display: none;">
+            </div>
         </div>
     
         <label for="image">Imagem do Produto:</label>
         <input type="file" id="image" name="image" accept="image/*">
     
+        <!-- Title over the add button -->
+        <div class="button-title">
+            <h3>Adicionar Produto</h3>
+        </div>
         <button type="submit" class="edit-button">Adicionar Produto</button>
     </form>
 </main>

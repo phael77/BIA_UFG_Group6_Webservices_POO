@@ -3,13 +3,14 @@ body, html {
     margin: 0;
     padding: 0;
     height: 100%;
-    font-family: Arial, sans-serif;
+    font-family: 'Helvetica Neue', sans-serif;
+    background-color: #fafafa; /* Light background */
 }
 
 /* Main Page Container */
 .product-page {
-    background-color: #f4f4f4;
-    padding: 20px;
+    background-color: #f9f9f9;
+    padding: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -21,22 +22,22 @@ body, html {
 .product-container {
     display: flex;
     background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    width: 80%;
-    max-width: 1000px;
-    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 900px;
+    padding: 30px;
     box-sizing: border-box;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
     flex-direction: column;
     align-items: center;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 /* Specific Styles for the Product Edit Form */
 .product-edit-form {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 15px; /* Reduced gap */
     width: 100%;
 }
 
@@ -45,80 +46,86 @@ body, html {
 .product-edit-form input[type="number"], 
 .product-edit-form textarea, 
 .product-edit-form select {
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    padding: 12px; /* Reduced padding */
+    font-size: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
     width: 100%;
     box-sizing: border-box;
     transition: border-color 0.3s ease, background-color 0.3s ease;
+    background-color: #fff;
 }
 
 .product-edit-form textarea {
     resize: vertical;
-    height: 150px;
+    min-height: 120px; /* Reduced height */
 }
 
 .product-edit-form input[type="text"]:focus, 
 .product-edit-form input[type="number"]:focus, 
 .product-edit-form textarea:focus, 
 .product-edit-form select:focus {
-    outline-color: #dd70cb;
-    border-color: #dd70cb;
+    outline: none;
+    border-color: #007bff;
+    background-color: #f3faff;
 }
 
 /* Button Styling */
 .product-edit-form button {
-    padding: 12px;
-    font-size: 18px;
+    padding: 12px; /* Reduced padding */
+    font-size: 15px;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.3s ease;
     width: 100%;
+    margin-top: 10px;
 }
 
 /* Update Button */
 .product-edit-form .edit-button {
-    background-color: #dd70cb;
+    background-color: #007bff;
     color: white;
 }
 
 .product-edit-form .edit-button:hover {
-    background-color: #c31c9b;
+    background-color: #0056b3;
 }
 
 /* Delete Button */
 .product-edit-form .delete-button {
-    background-color: #f44336;
+    background-color: #e74c3c;
     color: white;
 }
 
 .product-edit-form .delete-button:hover {
-    background-color: #e53935;
+    background-color: #c0392b;
 }
 
 /* Label Styling */
 .product-edit-form label {
-    font-size: 16px;
-    color: #333;
+    font-size: 14px;
+    color: #555;
     margin-bottom: 5px;
 }
 
 /* Size Section (Checkboxes for Sizes) */
 .product-edit-form .product-size {
-    margin-bottom: 20px;
+    margin-bottom: 15px; /* Reduced margin */
+    display: flex;
+    gap: 10px; /* Reduced gap */
+    flex-wrap: wrap;
 }
 
 .product-edit-form .product-size label {
-    font-size: 16px;
-    color: #333;
+    font-size: 14px;
+    color: #555;
     margin-bottom: 5px;
     display: block;
 }
 
 .product-edit-form .product-size input[type="checkbox"] {
-    margin-right: 10px;
+    margin-right: 5px; /* Reduced margin */
 }
 
 /* Other Size Input (Appears when "Outro" is checked) */
@@ -129,16 +136,25 @@ body, html {
 /* Page Title */
 .product-page h1 {
     text-align: center;
-    color: #ff00a1;
-    font-size: 28px;
-    margin-bottom: 30px;
+    color: #333;
+    font-size: 30px; /* Reduced font size */
+    font-weight: 600;
+    margin-bottom: 20px; /* Reduced margin */
+}
+
+/* Title Above Add Button */
+.button-title h3 {
+    font-size: 18px;
+    color: #333;
+    text-align: center;
+    margin-bottom: 10px;
 }
 
 /* Responsive Design for Smaller Screens */
 @media (max-width: 768px) {
     .product-container {
         flex-direction: column;
-        padding: 15px;
+        padding: 20px;
     }
 
     .product-edit-form {
@@ -146,11 +162,11 @@ body, html {
     }
 
     .product-page h1 {
-        font-size: 24px;
+        font-size: 26px;
     }
 
     .product-title {
-        font-size: 24px;
+        font-size: 20px;
     }
 
     .product-description {
@@ -158,7 +174,7 @@ body, html {
     }
 
     .product-price {
-        font-size: 20px;
+        font-size: 18px;
     }
 
     .product-quantity input {

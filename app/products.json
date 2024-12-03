@@ -2,12 +2,24 @@
     {
         "id": 1,
         "name": "Teste",
-        "description": "Testando",
+        "description": "Testandoaaaaaaaa\r\n",
         "price": 1000.0,
         "sizes": [
             "P",
             "M",
             "GG"
+        ],
+        "image": null
+    },
+    {
+        "id": 2,
+        "name": "Wagner",
+        "description": "O cara",
+        "price": 11199.0,
+        "sizes": [
+            "M",
+            "GG",
+            "Cabeça"
         ],
         "image": null
     }
