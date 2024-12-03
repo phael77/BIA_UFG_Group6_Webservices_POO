@@ -99,3 +99,22 @@ document.getElementById('registerForm').addEventListener('submit', async functio
     alert('Erro ao criar a conta.');
   }
 });
+
+// Function to check if a user is logged in
+function isUserLoggedIn() {
+  const loggedInUser = localStorage.getItem('loggedInUser');
+  return loggedInUser !== null; // Returns true if there's a logged-in user, otherwise false
+}
+
+// Example of how to disable/enable the "Add to Cart" button based on login status
+document.addEventListener('DOMContentLoaded', function() {
+  const addToCartButton = document.querySelector('.add-to-cart-button');
+  
+  if (addToCartButton) {
+    if (isUserLoggedIn()) {
+      addToCartButton.disabled = false;  // Enable the button if user is logged in
+    } else {
+      addToCartButton.disabled = true;   // Disable the button if no user is logged in
+    }
+  }
+});

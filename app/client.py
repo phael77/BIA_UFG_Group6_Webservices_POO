@@ -3,6 +3,8 @@ import json
 import os
 from app import app
 
+app.secret_key = '1234567890'  # Ensure to set a secret key for session management
+
 def save_products(products):
     with open('app/products.json', 'w', encoding='utf-8') as f:
         json.dump(products, f, ensure_ascii=False, indent=4)
@@ -134,37 +136,62 @@ def product(product_id):
     
     return render_template('product.html', product=product)
 
-# Página do carrinho de compras
-@app.route("/cart")
-def cart():
-    # Recupera o carrinho da sessão
-    cart = session.get('cart', [])
-    return render_template('cart.html', cart=cart)
-
-# Adicionar ao carrinho
-@app.route("/add_to_cart/<int:product_id>", methods=["POST"])
-def add_to_cart(product_id):
-    # Encontra o produto
+@app.route("/user/product/<int:product_id>")
+def user_product(product_id):
+    # Encontra o produto pelo ID
     product = next((p for p in PRODUCTS if p['id'] == product_id), None)
     if not product:
         return redirect(url_for('home'))  # Redireciona caso o produto não exista
     
-    # Recupera o carrinho da sessão
+    return render_template('user_product.html', product=product)
+
+# Página do carrinho de compras
+@app.route("/cart")
+def cart():
+    cart = session.get('cart', [])
+    total_price = sum(item['price'] * item['quantity'] for item in cart)  # Calculate total price
+    return render_template('cart.html', cart=cart, total_price=total_price)
+
+# Adicionar ao carrinho
+@app.route("/add_to_cart/<int:product_id>", methods=["POST"])
+def add_to_cart(product_id):
+    # Find the product in the PRODUCTS list
+    product = next((p for p in PRODUCTS if p['id'] == product_id), None)
+    
+    if not product:
+        return redirect(url_for('catalogo'))  # Redirect to catalog if product is not found
+
+    # Get data from the form
+    quantity = int(request.form['quantity'])
+    size = request.form['size']
+    name = request.form['name']
+    price = float(request.form['price'])
+    image = request.form['image']
+    
+    # Retrieve the current cart from the session
     cart = session.get('cart', [])
     
-    # Verifica se o produto já está no carrinho
-    existing_item = next((item for item in cart if item['id'] == product_id), None)
+    # Check if the product already exists in the cart
+    existing_item = next((item for item in cart if item['id'] == product_id and item['size'] == size), None)
+    
     if existing_item:
-        existing_item['quantity'] += 1  # Aumenta a quantidade
+        # If the item exists, update its quantity
+        existing_item['quantity'] += quantity
     else:
-        # Adiciona o produto com quantidade 1
-        cart.append({'id': product_id, 'name': product['name'], 'price': product['price'], 'quantity': 1, 'image': product['image']})
+        # Add the product to the cart
+        cart.append({
+            'id': product_id,
+            'name': name,
+            'price': price,
+            'size': size,
+            'quantity': quantity,
+            'image': image
+        })
     
-    # Atualiza o carrinho na sessão
+    # Save the updated cart back to the session
     session['cart'] = cart
-    
-    return redirect(url_for('cart'))  # Redireciona para a página do carrinho
 
+    return redirect(url_for('cart'))  # Redirect to the cart page
 # Página de catálogo
 @app.route("/catalogo")
 def catalogo():
@@ -173,6 +200,10 @@ def catalogo():
 @app.route("/admin/catalogo")
 def catalogo_admin():
     return render_template('catalogue-admin.html', PRODUCTS=PRODUCTS)
+
+@app.route("/user/catalogo")
+def catalogo_user():
+    return render_template('catalogue-logged.html', PRODUCTS=PRODUCTS)
 
 @app.route("/admin/product/<int:product_id>", methods=["GET", "POST"])
 def admin_product(product_id):
@@ -260,4 +291,30 @@ def add_product():
 
         return redirect(url_for('catalogo_admin'))  # Redirect to the admin catalog page
 
-    return render_template('add_product.html')  # Render the form to add a product
+    return render_template('add_product.html')  # Render the form to add a product@app.route("/update_cart_quantity/<int:product_id>/<size>", methods=["POST"])
+
+@app.route("/update_cart_quantity/<int:product_id>/<size>", methods=["POST"])
+def update_cart_quantity(product_id, size):
+    cart = session.get('cart', [])
+    new_quantity = int(request.form['quantity'])
+    
+    for item in cart:
+        if item['id'] == product_id and item['size'] == size:
+            item['quantity'] = new_quantity
+            break
+    
+    session['cart'] = cart
+    return redirect(url_for('cart'))
+
+
+@app.route("/remove_from_cart/<int:product_id>/<size>", methods=["POST"])
+def remove_from_cart(product_id, size):
+    cart = session.get('cart', [])
+    cart = [item for item in cart if not (item['id'] == product_id and item['size'] == size)]
+    session['cart'] = cart
+    return redirect(url_for('cart'))
+
+@app.route('/checkout')
+def checkout():
+    # Your checkout logic here
+    return render_template('checkout.html')

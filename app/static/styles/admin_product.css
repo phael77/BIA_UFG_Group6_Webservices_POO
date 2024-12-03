@@ -6,7 +6,7 @@ body, html {
     font-family: Arial, sans-serif;
 }
 
-/* Main Container */
+/* Main Page Container */
 .product-page {
     background-color: #f4f4f4;
     padding: 20px;
@@ -17,7 +17,7 @@ body, html {
     transition: background-color 0.3s ease;
 }
 
-/* Edit Product Container */
+/* Edit Product Form Container */
 .product-container {
     display: flex;
     background-color: white;
@@ -32,16 +32,19 @@ body, html {
     align-items: center;
 }
 
-/* Form Styles */
-form {
+/* Specific Styles for the Product Edit Form */
+.product-edit-form {
     display: flex;
     flex-direction: column;
     gap: 20px;
     width: 100%;
 }
 
-/* Form Input Styles */
-input[type="text"], input[type="number"], textarea, select {
+/* Input and Textarea Styles (Product Edit) */
+.product-edit-form input[type="text"], 
+.product-edit-form input[type="number"], 
+.product-edit-form textarea, 
+.product-edit-form select {
     padding: 10px;
     font-size: 16px;
     border: 1px solid #ccc;
@@ -51,18 +54,21 @@ input[type="text"], input[type="number"], textarea, select {
     transition: border-color 0.3s ease, background-color 0.3s ease;
 }
 
-textarea {
+.product-edit-form textarea {
     resize: vertical;
     height: 150px;
 }
 
-input[type="text"]:focus, input[type="number"]:focus, textarea:focus, select:focus {
+.product-edit-form input[type="text"]:focus, 
+.product-edit-form input[type="number"]:focus, 
+.product-edit-form textarea:focus, 
+.product-edit-form select:focus {
     outline-color: #dd70cb;
     border-color: #dd70cb;
 }
 
-/* Buttons */
-button {
+/* Button Styling */
+.product-edit-form button {
     padding: 12px;
     font-size: 18px;
     border: none;
@@ -73,52 +79,51 @@ button {
 }
 
 /* Update Button */
-.edit-button {
+.product-edit-form .edit-button {
     background-color: #dd70cb;
     color: white;
 }
 
-.edit-button:hover {
+.product-edit-form .edit-button:hover {
     background-color: #c31c9b;
 }
 
 /* Delete Button */
-.delete-button {
+.product-edit-form .delete-button {
     background-color: #f44336;
     color: white;
 }
 
-.delete-button:hover {
+.product-edit-form .delete-button:hover {
     background-color: #e53935;
 }
 
-/* Form Label Styling */
-label {
+/* Label Styling */
+.product-edit-form label {
     font-size: 16px;
     color: #333;
     margin-bottom: 5px;
 }
 
-/* Section for Sizes */
-.product-size {
+/* Size Section (Checkboxes for Sizes) */
+.product-edit-form .product-size {
     margin-bottom: 20px;
 }
 
-.product-size label {
+.product-edit-form .product-size label {
     font-size: 16px;
     color: #333;
     margin-bottom: 5px;
     display: block;
 }
 
-.product-size select {
-    width: 100%;
-    padding: 8px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-top: 5px;
-    box-sizing: border-box;
+.product-edit-form .product-size input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+/* Other Size Input (Appears when "Outro" is checked) */
+.product-edit-form .product-size input[type="text"] {
+    display: none;  /* Initially hidden */
 }
 
 /* Page Title */
@@ -129,14 +134,14 @@ label {
     margin-bottom: 30px;
 }
 
-/* Responsive Design */
+/* Responsive Design for Smaller Screens */
 @media (max-width: 768px) {
     .product-container {
         flex-direction: column;
         padding: 15px;
     }
 
-    form {
+    .product-edit-form {
         width: 100%;
     }
 

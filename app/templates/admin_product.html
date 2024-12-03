@@ -6,28 +6,30 @@
 <main class="catalog">
     <h1>Editar Produto</h1>
     
-    <form method="POST">
+    <!-- Specific class to avoid global input/button styles -->
+    <form method="POST" class="product-edit-form">
         <label for="name">Nome do Produto:</label>
-        <input type="text" id="name" name="name" value="{{ product.name }}" required>
+        <input type="text" id="name" name="name" value="{{ product.name }}" required class="product-input">
     
         <label for="description">Descrição:</label>
-        <textarea id="description" name="description" required>{{ product.description }}</textarea>
+        <textarea id="description" name="description" required class="product-input">{{ product.description }}</textarea>
     
         <label for="price">Preço:</label>
-        <input type="number" id="price" name="price" value="{{ product.price }}" required step="0.01">
+        <input type="number" id="price" name="price" value="{{ product.price }}" required step="0.01" class="product-input">
     
         <label for="sizes">Tamanhos:</label>
         <div>
             {% for size in ['P', 'M', 'G', 'GG'] %}
-                <input type="checkbox" id="size_{{ size }}" name="sizes" value="{{ size }}" 
+                <input type="checkbox" id="size_{{ size }}" name="sizes" value="{{ size }}" class="product-checkbox"
                 {% if size in product.sizes %}checked{% endif %}>
                 <label for="size_{{ size }}">{{ size }}</label>
             {% endfor %}
-            <input type="checkbox" id="size_other" name="size_other" value="other" 
+            <input type="checkbox" id="size_other" name="size_other" value="other" class="product-checkbox"
                 {% if 'other' in product.sizes %}checked{% endif %} onchange="toggleOtherSizeInput()">
             <label for="size_other">Outro</label>
             <input type="text" id="other_size" name="other_size" placeholder="Digite outro tamanho" 
-                value="{% if 'other' in product.sizes %}{{ product.sizes[-1] }}{% endif %}" style="display: none;">
+                value="{% if 'other' in product.sizes %}{{ product.sizes[-1] }}{% endif %}" 
+                style="display: none;" class="product-input">
         </div>
     
         <button type="submit" class="edit-button">Atualizar Produto</button>

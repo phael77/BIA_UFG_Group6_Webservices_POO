@@ -1,48 +1,96 @@
-{% extends "base.html" %}
+{% extends "base-logged.html" %}
 
-{% block title %}Cart{% endblock %}
+{% block title %}Página do Carrinho{% endblock %}
 
 {% block content %}
+<h1>Página do Carrinho</h1>
 
-<h1>Carrinho de Compras</h1>
-<section class="cart">
-    <div class="cart-item">
-        <div class="cart-item-details">
-            <img src="{{ url_for('static', filename='images/product1.jpg') }}" alt="Produto" class="cart-item-image">
-            <div class="cart-item-info">
-                <h2>Bermuda Social</h2>
-                <p>R$120,00</p>
+<section class="cart-page">
+    {% if cart %}
+        {% for item in cart %}
+        <div class="cart-page-item" data-item-id="{{ item['id'] }}" data-item-price="{{ item['price'] }}">
+            <div class="cart-page-item-details">
+                <img src="{{ url_for('static', filename='images/' + item['image']) }}" alt="{{ item['name'] }}" class="cart-page-item-image">
+                <div class="cart-page-item-info">
+                    <h2>{{ item['name'] }}</h2>
+                    <p>R$ {{ '%.2f' % item['price'] }}</p>
+                    <p>Tamanho: {{ item['size'] }}</p>
+                </div>
+            </div>
+            
+            <div class="cart-page-item-actions">
+                <div class="cart-page-item-quantity">
+                    <button class="quantity-btn decrease" data-item-id="{{ item['id'] }}">-</button>
+                    <span class="quantity-value">{{ item['quantity'] }}</span>
+                    <button class="quantity-btn increase" data-item-id="{{ item['id'] }}">+</button>
+                </div>
+
+                <div class="cart-page-item-total">
+                    <span class="item-total">Total: R$ {{ '%.2f' % (item['price'] * item['quantity']) }}</span>
+                </div>
+
+                <form action="{{ url_for('remove_from_cart', product_id=item['id'], size=item['size']) }}" method="POST">
+                    <button type="submit" class="remove">Remover</button>
+                </form>
             </div>
         </div>
-        <div class="cart-item-quantity">
-            <span>Quantidade: 1</span>
+        {% endfor %}
+        
+        <div class="cart-page-summary">
+            <p>Subtotal: <span id="total-price">R$ {{ '%.2f' % total_price }}</span></p>
+            <a href="{{ url_for('checkout') }}">
+                <button class="checkout">Finalizar Compra</button>
+            </a>
         </div>
-        <div class="cart-item-total">
-            <span>Total: R$120,00</span>
-        </div>
-        <button class="remove">Remover</button>
-    </div>
-    <div class="cart-item">
-        <div class="cart-item-details">
-            <img src="{{ url_for('static', filename='images/product2.jpg') }}" alt="Produto" class="cart-item-image">
-            <div class="cart-item-info">
-                <h2>Conjunto de Babado</h2>
-                <p>R$85,00</p>
-            </div>
-        </div>
-        <div class="cart-item-quantity">
-            <span>Quantidade: 1</span>
-        </div>
-        <div class="cart-item-total">
-            <span>Total: R$85,00</span>
-        </div>
-        <button class="remove">Remover</button>
-    </div>
-    
-    <div class="cart-summary">
-        <p>Subtotal: <span>R$205,00</span></p>
-        <button class="checkout">Finalizar Compra</button>
-    </div>
+
+    {% else %}
+        <p>Seu carrinho está vazio.</p>
+    {% endif %}
 </section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Function to update the price
+        function updateTotalPrice() {
+            let totalPrice = 0;
+            const itemTotals = document.querySelectorAll('.cart-page-item');
+            itemTotals.forEach(function (item) {
+                const price = parseFloat(item.getAttribute('data-item-price'));
+                const quantity = parseInt(item.querySelector('.quantity-value').innerText, 10);
+                const itemTotal = price * quantity;
+                item.querySelector('.item-total').innerText = 'Total: R$ ' + itemTotal.toFixed(2);
+                totalPrice += itemTotal;
+            });
+            document.getElementById('total-price').innerText = 'R$ ' + totalPrice.toFixed(2);
+        }
+
+        // Attach event listeners to quantity buttons
+        const increaseBtns = document.querySelectorAll('.quantity-btn.increase');
+        const decreaseBtns = document.querySelectorAll('.quantity-btn.decrease');
+
+        increaseBtns.forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                const quantityElement = btn.closest('.cart-page-item').querySelector('.quantity-value');
+                let currentQuantity = parseInt(quantityElement.innerText, 10);
+                quantityElement.innerText = currentQuantity + 1;
+                updateTotalPrice();
+            });
+        });
+
+        decreaseBtns.forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                const quantityElement = btn.closest('.cart-page-item').querySelector('.quantity-value');
+                let currentQuantity = parseInt(quantityElement.innerText, 10);
+                if (currentQuantity > 1) {
+                    quantityElement.innerText = currentQuantity - 1;
+                    updateTotalPrice();
+                }
+            });
+        });
+
+        // Initial price update
+        updateTotalPrice();
+    });
+</script>
 
 {% endblock %}
