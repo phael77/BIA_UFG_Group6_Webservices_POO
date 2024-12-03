@@ -2,11 +2,16 @@
     {
         "username": "Lola",
         "password": "1",
-        "profile": 1
+        "profile": 2
     },
     {
         "username": "iAmAUser",
         "password": "verysafepass",
+        "profile": 1
+    },
+    {
+        "username": "1",
+        "password": "1",
         "profile": 1
     }
 ]

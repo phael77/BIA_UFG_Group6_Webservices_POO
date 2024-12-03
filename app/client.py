@@ -40,10 +40,24 @@ def home():
     if 'username' in session:
         # Redireciona para a página específica do perfil
         if session.get('profile') == 1:
-            return redirect(url_for('index-logged'))  # Usuário comum
+            return redirect(url_for('home_loggedin'))  # Usuário comum
         elif session.get('profile') == 2:
             return redirect(url_for('home_admin'))  # Administrador
     return render_template('index.html')
+
+# Página do usuário logado
+@app.route("/user")
+def home_loggedin():
+    #if 'username' in session and session.get('profile') == 1:
+        return render_template('index-logged.html')#, username=session['username'])
+    #return redirect(url_for('login'))  # Se o usuário não estiver logado ou for admin, redireciona para login
+
+# Página de admin
+@app.route("/admin")
+def home_admin():
+    #if 'username' in session and session.get('profile') == 2:
+        return render_template('index-admin.html')#, username=session['username'])
+    #return redirect(url_for('login'))  # Se não for admin ou não estiver logado, redireciona para login
 
 # Página de login
 @app.route("/login", methods=["GET", "POST"])
@@ -62,7 +76,12 @@ def login():
             # Usuário autenticado, cria sessão e redireciona para home
             session['username'] = username  # Armazena o nome de usuário na sessão
             session['profile'] = user['profile']  # Armazena o perfil do usuário
-            return redirect(url_for('home'))  # Redireciona para a página inicial
+
+            # Redireciona com base no perfil
+            if user['profile'] == 1:
+                return redirect(url_for('home_loggedin'))  # Redireciona para a página do usuário
+            elif user['profile'] == 2:
+                return redirect(url_for('home_admin'))  # Redireciona para a página do admin
         else:
             # Caso contrário, mostra a mensagem de erro
             return render_template('login.html', error="Usuário ou senha inválidos.")
@@ -73,9 +92,6 @@ def login():
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
-        # Log para verificar o recebimento da requisição POST
-        print("Formulário de registro enviado!")
-
         username = request.form['username']
         password = request.form['password']
         # Define o perfil como 1 (usuário comum)

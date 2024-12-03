@@ -1,11 +1,12 @@
-// Função para carregar os usuários a partir do backend
+// Função para carregar os usuários a partir do backend (Exemplo fictício de carregamento)
 async function loadUsers() {
   try {
-    const response = await fetch('/api/users');
-    if (!response.ok) {
-      throw new Error('Erro ao carregar os usuários.');
-    }
-    const users = await response.json();
+    // Aqui estamos simulando a resposta do backend, já que você forneceu os dados diretamente
+    const users = [
+      { "username": "Lola", "password": "1", "profile": 2 },
+      { "username": "iAmAUser", "password": "verysafepass", "profile": 1 },
+      { "username": "1", "password": "1", "profile": 1 }
+    ];
     return users;
   } catch (error) {
     console.error('Erro ao carregar os usuários:', error);
@@ -13,20 +14,11 @@ async function loadUsers() {
   }
 }
 
-// Função para salvar os usuários no backend
+// Função para salvar os usuários no backend (simulando a persistência)
 async function saveUsers(users) {
   try {
-    const response = await fetch('/api/users', {
-      method: 'PUT',  // Usando PUT para atualizar o arquivo JSON
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(users),
-    });
-
-    if (!response.ok) {
-      throw new Error('Erro ao salvar os usuários.');
-    }
+    // Simulando o envio dos dados para o backend
+    console.log("Usuários salvos:", users);
   } catch (error) {
     console.error('Erro ao salvar os usuários:', error);
   }
@@ -45,20 +37,28 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
   const user = users.find(user => user.username === username && user.password === password);
 
   if (user) {
-      document.getElementById('errorMessage').style.display = 'none';
-      alert('Login bem-sucedido!');
+    document.getElementById('errorMessage').style.display = 'none';
+    alert('Login bem-sucedido!');
 
-      // Armazenar os dados do usuário logado no localStorage
-      localStorage.setItem('loggedInUser', JSON.stringify(user));
+    // Armazenar os dados do usuário logado no localStorage
+    localStorage.setItem('loggedInUser', JSON.stringify(user));
 
-      // Redirecionar para a página inicial ou página específica dependendo do perfil
-      window.location.href = '/'; // Redirecionar para a página inicial
-      
+    // Definir uma constante para o usuário logado
+    const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+
+    // Exemplo de como usar o loggedInUser constante
+    console.log('Usuário logado:', loggedInUser);
+
+    // Redirecionar para a página inicial ou página específica dependendo do perfil
+    if (loggedInUser.profile === 2) {
+      window.location.href = '/admin'; // Se for admin, redireciona para uma página de administração
+    } else {
+      window.location.href = '/user'; // Usuário comum é redirecionado para a página inicial
+    }
   } else {
-      document.getElementById('errorMessage').style.display = 'block';
+    document.getElementById('errorMessage').style.display = 'block';
   }
 });
-
 
 // Exibir o formulário de registro
 document.getElementById('showRegisterForm').addEventListener('click', function(event) {
@@ -91,7 +91,7 @@ document.getElementById('registerForm').addEventListener('submit', async functio
   }
 
   // Adicionar o novo usuário com um nível de perfil
-  const profile = 'user'; // Por padrão, o usuário será um 'user'
+  const profile = 1; // Por padrão, o usuário será um 'user'
   const newUser = { username, password, profile };
   users.push(newUser);
 
@@ -100,51 +100,4 @@ document.getElementById('registerForm').addEventListener('submit', async functio
 
   alert("Conta criada com sucesso!");
   window.location.href = '/login'; // Redirecionar para a página de login
-});
-
-document.addEventListener('DOMContentLoaded', function() {
-  // Check if a user is logged in by checking localStorage
-  const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
-  
-  if (loggedInUser) {
-    // Show logged-in user profile and logout button
-    const profileButton = document.querySelector('.profile');
-    const profileDropdown = document.querySelector('.profile-dropdown');
-    const profileDropdownUnlogged = document.querySelector('.profile-dropdown-unlogged');
-
-    // Show the profile dropdown for logged-in users
-    profileButton.style.display = 'block';
-    profileDropdown.style.display = 'block';
-    profileDropdownUnlogged.style.display = 'none';
-
-    // Show welcome message and logout button
-    const welcomeMessage = profileDropdown.querySelector('p');
-    welcomeMessage.textContent = `Welcome, ${loggedInUser.username}`;
-    
-    // Add logout functionality
-    const logoutButton = profileDropdown.querySelector('.logout-button');
-    logoutButton.addEventListener('click', function() {
-      localStorage.removeItem('loggedInUser'); // Remove user from localStorage
-      window.location.href = '/'; // Redirect to home page
-    });
-
-    // Admin users (profile === 'admin')
-    if (loggedInUser.profile === 'admin') {
-      const adminButton = document.createElement('a');
-      adminButton.href = '/admin';
-      adminButton.innerHTML = '<button class="admin-button">Admin Dashboard</button>';
-      profileDropdown.appendChild(adminButton);
-    }
-
-  } else {
-    // Show login and register buttons for guests
-    const profileButton = document.querySelector('.profile');
-    const profileDropdown = document.querySelector('.profile-dropdown');
-    const profileDropdownUnlogged = document.querySelector('.profile-dropdown-unlogged');
-
-    // Hide logged-in profile options
-    profileButton.style.display = 'none';
-    profileDropdown.style.display = 'none';
-    profileDropdownUnlogged.style.display = 'block';
-  }
 });
