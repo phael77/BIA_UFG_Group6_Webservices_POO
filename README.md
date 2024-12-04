@@ -31,7 +31,7 @@ Como Rodar o Projeto
 
 1. Clone o repositório:
 
-   git clone https://github.com/usuario/repo.git
+   git clone https://github.com/phael77/BIA_UFG_Group6_Webservices_POO.git
 
 2. Instale as dependências:
 
