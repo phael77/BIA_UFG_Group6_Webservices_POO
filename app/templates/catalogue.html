@@ -1,40 +1,63 @@
 {% extends "base.html" %}
+<!-- O template herda a estrutura de "base.html", que provavelmente contém elementos como cabeçalho, rodapé e outros componentes comuns à página. -->
 
 {% block title %}Catálogo de Produtos{% endblock %}
+<!-- O título da página será "Catálogo de Produtos", que será exibido na aba do navegador. -->
 
 {% block content %}
+<!-- Este é o bloco de conteúdo principal da página. A informação aqui será inserida no bloco 'content' do template base. -->
 
 <main class="catalog">
     <h1>Catálogo de Produtos</h1>
-    
-    <div class="catalog-grid">
-        {% for product in PRODUCTS %}
-        <div class="catalog-item">
-            <!-- Product Image -->
-            <img src="{{ product.image }}" alt="{{ product.name }}" class="product-img">
-            
-            <!-- Product Name -->
-            <h2>{{ product.name }}</h2>
-            
-            <!-- Product Price -->
-            <p class="product-price">R$ {{ '%.2f' | format(product.price) }}</p>
+    <!-- Cabeçalho principal da página, com o título "Catálogo de Produtos". -->
 
-            <!-- Sizes List as Circular Balls -->
+    <div class="catalog-grid">
+        <!-- Container para a grade de produtos. A classe "catalog-grid" provavelmente aplica um layout de grid (como o CSS Grid ou Flexbox) para organizar os produtos na tela. -->
+        
+        {% for product in PRODUCTS %}
+        <!-- Inicia um loop que percorre todos os produtos da lista "PRODUCTS". Para cada item da lista, ele irá exibir um produto na página. -->
+        
+        <div class="catalog-item">
+            <!-- Container para cada item do catálogo. Cada produto será exibido dentro desta <div>. -->
+            
+            <!-- Imagem do Produto -->
+            <img src="{{ product.image }}" alt="{{ product.name }}" class="product-img">
+            <!-- Exibe a imagem do produto. O caminho da imagem é fornecido pela variável "product.image". O texto alternativo (alt) é o nome do produto. -->
+            
+            <!-- Nome do Produto -->
+            <h2>{{ product.name }}</h2>
+            <!-- Exibe o nome do produto. A variável "product.name" contém o nome do produto. -->
+            
+            <!-- Preço do Produto -->
+            <p class="product-price">R$ {{ '%.2f' | format(product.price) }}</p>
+            <!-- Exibe o preço do produto. A variável "product.price" contém o preço, e o formato de duas casas decimais é aplicado. -->
+            
+            <!-- Lista de Tamanhos -->
             <div class="product-sizes">
                 <h4>Tamanhos: 
                     {% for size in product.sizes %}
-                        <span class="size-ball">{{ size }}</span>{% if not loop.last %} {% endif %}
+                    <!-- Inicia um loop sobre os tamanhos disponíveis para o produto (em "product.sizes"). -->
+                        <span class="size-ball">{{ size }}</span>
+                        <!-- Cada tamanho será exibido como um "círculo" usando a classe CSS "size-ball". -->
                     {% endfor %}
                 </h4>
             </div>
             
-            <!-- "See Details" Button -->
+            <!-- Botão de Ver Detalhes -->
             <a href="{{ url_for('product', product_id=product.id) }}">
-            <button class="see-details-button" onclick="viewDetails('{{ product.id }}')">Ver Detalhes</button>
+            <!-- O link leva o usuário para a página de detalhes do produto. O parâmetro "product_id" é passado para a URL gerada pela função "url_for". -->
+                <button class="see-details-button" onclick="viewDetails('{{ product.id }}')">Ver Detalhes</button>
+                <!-- O botão "Ver Detalhes" exibe mais informações sobre o produto. O código JavaScript "viewDetails('{{ product.id }}')" é chamado quando o botão é clicado, podendo ser utilizado para ações dinâmicas no frontend. -->
             </a>
         </div>
+        <!-- Fim do container para cada item do produto. -->
+        
         {% endfor %}
+        <!-- Fim do loop sobre os produtos. -->
+        
     </div>
+    <!-- Fim do container para a grade de produtos. -->
 </main>
 
 {% endblock %}
+<!-- Fim do bloco de conteúdo principal. -->

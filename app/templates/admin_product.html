@@ -6,47 +6,59 @@
 <main class="catalog">
     <h1>Editar Produto</h1>
     
-    <!-- Specific class to avoid global input/button styles -->
+    <!-- Formulário de edição do produto com estilos específicos -->
     <form method="POST" class="product-edit-form">
+        
+        <!-- Campo para o nome do produto, preenchido com o valor atual -->
         <label for="name">Nome do Produto:</label>
         <input type="text" id="name" name="name" value="{{ product.name }}" required class="product-input">
     
+        <!-- Campo para a descrição do produto, preenchido com a descrição atual -->
         <label for="description">Descrição:</label>
         <textarea id="description" name="description" required class="product-input">{{ product.description }}</textarea>
     
+        <!-- Campo para o preço do produto, preenchido com o preço atual -->
         <label for="price">Preço:</label>
         <input type="number" id="price" name="price" value="{{ product.price }}" required step="0.01" class="product-input">
     
+        <!-- Seção de tamanhos disponíveis -->
         <label for="sizes">Tamanhos:</label>
         <div>
+            <!-- Geração de checkboxes para tamanhos fixos (P, M, G, GG) -->
             {% for size in ['P', 'M', 'G', 'GG'] %}
                 <input type="checkbox" id="size_{{ size }}" name="sizes" value="{{ size }}" class="product-checkbox"
                 {% if size in product.sizes %}checked{% endif %}>
                 <label for="size_{{ size }}">{{ size }}</label>
             {% endfor %}
+            
+            <!-- Checkbox para o tamanho "Outro", que exibe um campo de texto se selecionado -->
             <input type="checkbox" id="size_other" name="size_other" value="other" class="product-checkbox"
                 {% if 'other' in product.sizes %}checked{% endif %} onchange="toggleOtherSizeInput()">
             <label for="size_other">Outro</label>
+            
+            <!-- Campo de texto que aparece quando "Outro" é selecionado -->
             <input type="text" id="other_size" name="other_size" placeholder="Digite outro tamanho" 
                 value="{% if 'other' in product.sizes %}{{ product.sizes[-1] }}{% endif %}" 
                 style="display: none;" class="product-input">
         </div>
     
+        <!-- Botão para atualizar as informações do produto -->
         <button type="submit" class="edit-button">Atualizar Produto</button>
     </form>
 
+    <!-- Formulário para excluir o produto -->
     <form action="{{ url_for('admin_product', product_id=product.id) }}" method="POST" style="margin-top: 20px;">
         <button type="submit" name="delete" class="delete-button">Excluir Produto</button>
     </form>
 </main>
 
 <script>
-    // Função para alternar a exibição do campo de texto "Outro" baseado no checkbox
+    // Função que alterna a visibilidade do campo de texto para "Outro tamanho"
     function toggleOtherSizeInput() {
         var otherSizeCheckbox = document.getElementById("size_other");
         var otherSizeInput = document.getElementById("other_size");
         
-        // Se o checkbox "Outro" estiver marcado, exibe o campo de texto
+        // Se o checkbox "Outro" estiver marcado, o campo de texto para o outro tamanho será exibido
         if (otherSizeCheckbox.checked) {
             otherSizeInput.style.display = "inline";
         } else {
@@ -54,7 +66,7 @@
         }
     }
     
-    // Chama a função para ajustar a visibilidade do campo de texto quando a página é carregada
+    // Chama a função ao carregar a página para garantir que o campo de "Outro tamanho" apareça ou desapareça corretamente
     window.onload = function() {
         toggleOtherSizeInput();
     };

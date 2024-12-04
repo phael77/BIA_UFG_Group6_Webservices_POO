@@ -1,13 +1,18 @@
 {% extends 'base.html' %}
+<!-- Este template herda a estrutura geral do 'base.html', o que provavelmente define o cabeçalho, rodapé e outros componentes comuns da página. -->
 
 {% block title %}Produto - Empresa Confiável{% endblock %}
+<!-- Define o título da página na aba do navegador, que será "Produto - Empresa Confiável". -->
 
 {% block content %}
+<!-- Bloco principal de conteúdo específico da página de produto. -->
 <main class="product-page">
     <div class="product-container">
+        <!-- Contêiner principal do produto. -->
+
         <!-- Product Image -->
         <div class="product-image">
-            <!-- Check if product.image exists, if so display the product image, otherwise use a default image -->
+            <!-- Exibe a imagem do produto, ou uma imagem padrão caso o produto não tenha imagem associada. -->
             {% if product.image %}
                 <img src="{{ url_for('static', filename='images/' + product.image) }}" alt="Product Image" class="product-img">
             {% else %}
@@ -17,20 +22,25 @@
 
         <!-- Product Information -->
         <div class="product-details">
+            <!-- Exibe as informações do produto, como nome, descrição e preço. -->
             <h1 class="product-title">{{ product.name }}</h1>
             <p class="product-description">{{ product.description }}</p>
             <p class="product-price">R$ {{ '%.2f' % product.price }}</p>
-            
+            <!-- O preço do produto é formatado para exibir duas casas decimais (ex: R$ 199.99). -->
+
             <!-- Add to Cart Form -->
             <form action="{{ url_for('add_to_cart', product_id=product.id) }}" method="POST">
+                <!-- Formulário que envia os dados do produto para a rota de adicionar ao carrinho. -->
                 <input type="hidden" name="name" value="{{ product.name }}">
                 <input type="hidden" name="price" value="{{ product.price }}">
                 <input type="hidden" name="image" value="{{ product.image }}">
+                <!-- Os campos hidden armazenam informações sobre o produto. -->
 
                 <!-- Product Quantity -->
                 <div class="product-quantity">
                     <label for="quantity">Quantidade:</label>
                     <input type="number" id="quantity" name="quantity" value="1" min="1" max="100">
+                    <!-- Campo para o usuário escolher a quantidade de unidades do produto. O valor mínimo é 1 e o máximo é 100. -->
                 </div>
 
                 <!-- Product Size Selector -->
@@ -40,13 +50,16 @@
                         {% for size in product.sizes %}
                             <option value="{{ size }}">{{ size }}</option>
                         {% endfor %}
+                        <!-- Um seletor de tamanhos, baseado nas opções disponíveis para o produto (armazenadas em 'product.sizes'). -->
                     </select>
                 </div>
 
                 <!-- Add to Cart Button -->
                 <button type="submit" class="add-to-cart-button">Adicionar ao carrinho</button>
+                <!-- Botão que envia o formulário para adicionar o produto ao carrinho. -->
             </form>
         </div>
     </div>
 </main>
 {% endblock %}
+<!-- Fim do bloco de conteúdo, onde as informações do produto são exibidas. -->

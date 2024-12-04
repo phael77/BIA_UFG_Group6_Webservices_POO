@@ -1,64 +1,101 @@
 {% extends "base-admin.html" %}
+<!-- Extende o template base-admin.html, que provavelmente contém o layout padrão para a área administrativa -->
 
 {% block title %}Catálogo de Produtos{% endblock %}
+<!-- Define o título da página, que será mostrado na aba do navegador -->
 
 {% block content %}
+<!-- Início do conteúdo da página -->
 
 <main class="catalog">
     <h1>Catálogo de Produtos</h1>
+    <!-- Título principal da página do catálogo de produtos -->
     
-    <!-- Add Product Button -->
+    <!-- Botão de Adicionar Produto -->
     <div class="add-product-btn-container">
+        <!-- Contêiner do botão de adicionar produto -->
         <a href="{{ url_for('add_product') }}" class="add-product-link">
+            <!-- Link que redireciona para a página de adicionar um novo produto -->
             <button class="add-product-button">Add Product</button>
+            <!-- Botão para adicionar um novo produto -->
         </a>
     </div>
 
+    <!-- Grade de Produtos -->
     <div class="catalog-grid">
+        <!-- Contêiner para a grade de produtos, que vai listar os produtos cadastrados -->
+        
         {% if PRODUCTS %}
-            {% for product in PRODUCTS %}
-                <div class="catalog-item">
-                    <!-- Product Image -->
-                    <img src="{{ product.image }}" alt="{{ product.name }}" class="product-img">
-                    
-                    <!-- Product Name -->
-                    <h2>{{ product.name }}</h2>
-                    
-                    <!-- Product Price -->
-                    <p class="product-price">R$ {{ '%.2f' | format(product.price) }}</p>
+            <!-- Verifica se há produtos na lista PRODUCTS -->
 
-                    <!-- Sizes List as Circular Balls -->
+            {% for product in PRODUCTS %}
+                <!-- Loop que percorre todos os produtos na lista PRODUCTS -->
+                <div class="catalog-item">
+                    <!-- Contêiner de um produto individual -->
+
+                    <!-- Imagem do Produto -->
+                    <img src="{{ product.image }}" alt="{{ product.name }}" class="product-img">
+                    <!-- Exibe a imagem do produto (supondo que 'product.image' seja o caminho para a imagem do produto) -->
+
+                    <!-- Nome do Produto -->
+                    <h2>{{ product.name }}</h2>
+                    <!-- Exibe o nome do produto -->
+
+                    <!-- Preço do Produto -->
+                    <p class="product-price">R$ {{ '%.2f' | format(product.price) }}</p>
+                    <!-- Exibe o preço do produto formatado com duas casas decimais -->
+
+                    <!-- Lista de Tamanhos do Produto como Bolinhas -->
                     <div class="product-sizes">
-                        <h4>Tamanhos: 
+                        <h4>Tamanhos:
                             {% for size in product.sizes %}
-                                <span class="size-ball">{{ size }}</span>{% if not loop.last %} {% endif %}
+                                <!-- Loop para exibir os tamanhos disponíveis para o produto -->
+                                <span class="size-ball">{{ size }}</span>
+                                <!-- Cada tamanho é exibido dentro de uma "bolinha" -->
+                                {% if not loop.last %} {% endif %}
+                                <!-- Controle para garantir que a última bolinha não tenha um espaçamento extra -->
                             {% endfor %}
                         </h4>
                     </div>
                     
-                    <!-- Edit and Delete Buttons (Admin Controls) -->
+                    <!-- Controles de Administração: Editar e Deletar -->
                     <div class="admin-controls">
+                        <!-- Contêiner com os botões de controle administrativo -->
+                        
+                        <!-- Botão de Editar -->
                         <a href="{{ url_for('admin_product', product_id=product.id) }}">
+                            <!-- Link para editar o produto, passando o ID do produto -->
                             <button class="edit-button">Editar</button>
+                            <!-- Botão para editar o produto -->
                         </a>
                         
+                        <!-- Formulário de Deletar Produto -->
                         <form action="{{ url_for('admin_product', product_id=product.id) }}" method="POST" style="display:inline;">
+                            <!-- Formulário que envia um pedido POST para deletar o produto -->
                             <button type="submit" name="delete" value="true" class="delete-button">Deletar</button>
+                            <!-- Botão para deletar o produto -->
                         </form>
                     </div>
                 </div>
             {% endfor %}
+            <!-- Fim do loop que percorre todos os produtos -->
         {% else %}
+            <!-- Caso não haja produtos na lista -->
             <p class="no-products">
                 Empty...
             </p>
+            <!-- Exibe a mensagem "Empty..." caso o catálogo esteja vazio -->
+
             <p class="no-products-2">
                 add Products
             </p>
-            
+            <!-- Exibe a mensagem "add Products" caso o catálogo esteja vazio -->
         {% endif %}
+        <!-- Fim da verificação de produtos -->
 
     </div>
+    <!-- Fim da grade de produtos -->
 </main>
 
 {% endblock %}
+<!-- Fim do conteúdo da página -->

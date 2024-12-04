@@ -1,39 +1,60 @@
 {% extends "base.html" %}
+<!-- Este template herda do "base.html", que define o layout geral da página, como cabeçalho, rodapé, etc. O conteúdo da página será inserido no bloco 'content' desse template base. -->
 
 {% block title %}Login - Empresa Confiável{% endblock %}
+<!-- Define o título da página para "Login - Empresa Confiável", que será exibido na aba do navegador. -->
 
 {% block content %}
+<!-- Define o conteúdo principal da página. Esse conteúdo será inserido no bloco 'content' do template base.html. -->
 
+<!-- Seção de login -->
 <div class="login">
     <form class="card" id="loginForm">
+        <!-- Formulário de login estilizado com a classe 'card'. O formulário será enviado com o ID 'loginForm'. -->
+
         <div class="card-header">
             <h2>Login</h2>
+            <!-- Cabeçalho do formulário, que contém o título "Login". -->
         </div>
 
         <div class="card-content">
+            <!-- Área principal do conteúdo do formulário. -->
+            
             <div class="card-content-area">
+                <!-- Área para o campo de nome de usuário. -->
                 <label for="usuario">Usuário</label>
+                <!-- Rótulo para o campo de nome de usuário. -->
                 <input type="text" id="username" name="username" autocomplete="off" required>
+                <!-- Campo de entrada para o nome de usuário. O atributo 'autocomplete' é desativado para evitar sugestões automáticas, e o campo é obrigatório. -->
             </div>
 
             <div class="card-content-area">
+                <!-- Área para o campo de senha. -->
                 <label for="password">Senha</label>
+                <!-- Rótulo para o campo de senha. -->
                 <input type="password" id="password" name="password" autocomplete="off" required>
+                <!-- Campo de entrada para a senha, que é ocultado por ser do tipo "password". O atributo 'autocomplete' também está desativado. -->
             </div>
         </div>
 
         <div class="card-footer">
+            <!-- Rodapé do formulário, onde ficam os botões. -->
             <input type="submit" value="Login" class="submit">
+            <!-- Botão de envio do formulário com o texto "Login". O tipo de botão é 'submit'. -->
             <a href="/register" id="showRegisterForm" class="recuperar_senha">Criar conta</a>
+            <!-- Link para a página de criação de conta. -->
         </div>
 
-        <!-- To show error message -->
+        <!-- Seção para exibir mensagens de erro -->
         <div id="errorMessage" style="color: red; display: none;">
+            <!-- A mensagem de erro será exibida em vermelho e estará inicialmente oculta. -->
             Nome de usuário ou senha inválidos.
         </div>
     </form>
 </div>
 
+<!-- Script para lógica de autenticação, carregado a partir do arquivo 'auth.js' -->
 <script src="{{ url_for('static', filename='scripts/auth.js') }}"></script>
 
 {% endblock %}
+<!-- Fim do bloco de conteúdo -->

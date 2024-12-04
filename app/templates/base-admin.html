@@ -1,9 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+    <!-- Meta tags para charset e viewport -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Título da página, que pode ser sobrescrito no bloco title -->
     <title>{% block title %}Empresa Confiável{% endblock %}</title>
+    
+    <!-- Links para os estilos CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/base.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/login.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/register.css') }}">
@@ -13,21 +19,27 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/catalogue.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/admin_product.css') }}">
 
-    <!-- Include Font Awesome for icons -->
+    <!-- Link para o Font Awesome, usado para ícones -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
+
 <body>
 
+    <!-- Cabeçalho da página -->
     <header class="header">
         <div class="site-title">
+            <!-- Nome da empresa com link para a página principal do admin -->
             <a href="/admin">Empresa Confiável</a>
         </div>
+        
+        <!-- Botão para acessar o catálogo -->
         <a href="/admin/catalogo">
             <button class="catalogue-button">Catalogue</button>
-        </a>        <!-- Search Bar with Magnifying Glass Icon -->
+        </a>
+        
+        <!-- Barra de pesquisa com ícone de lupa -->
         <div class="search-bar">
             <input type="text" autocomplete="off" id="searchInput" placeholder="Search...">
-            <!-- Magnifying glass icon on the right -->
             <i class="fa fa-search" id="searchIcon"></i>
             <div class="search-bar-suggestions">
                 <p>Sugestões de pesquisa</p>
@@ -36,9 +48,10 @@
                 <p>Sugestão 3</p>
             </div>
         </div>
-  
+
+        <!-- Botões do cabeçalho -->
         <div class="header-buttons">
-            <!-- Profile button with user icon -->
+            <!-- Botão de perfil com ícone de usuário -->
             <button class="profile">
                 <i class="fa fa-user" style="font-size:24px"></i> Admin User
             </button>
@@ -48,13 +61,14 @@
                         <i class="fa fa-sign-out" style="margin-right: 8px;"></i>Logout
                     </button>
                 </a>
-            </div>            
+            </div>
         </div>
     </header>
 
-    <!-- Dark Mode Button in a separate corner -->
+    <!-- Botão para alternar para o modo escuro (dark mode) -->
     <button class="toggle-darkmode">🌙</button>
 
+    <!-- Barra lateral com links de navegação -->
     <div class="sidebar">
         <ul>
             <li><a href="/admin">Home</a></li>
@@ -64,15 +78,20 @@
         </ul>
     </div>
 
+    <!-- Botão para alternar a visibilidade da barra lateral -->
     <button class="toggle-sidebar" onclick="toggleSidebar()">≡</button>
 
+    <!-- Conteúdo principal, que será substituído pelo bloco content -->
     <main>
         {% block content %}{% endblock %}
     </main>
 
+    <!-- Rodapé da página -->
     <footer class="footer">
         <div class="footer-content">
             <p>&copy; 2024 Empresa Confiável. All rights reserved</p>
+            
+            <!-- Ícones de redes sociais -->
             <div class="social-icons">
                 <a href="#" class="social-icon"><i class="fa fa-facebook"></i></a>
                 <a href="#" class="social-icon"><i class="fa fa-twitter"></i></a>
@@ -80,6 +99,8 @@
                 <a href="#" class="social-icon"><i class="fa fa-whatsapp"></i></a>
                 <a href="#" class="social-icon"><i class="fa fa-linkedin"></i></a>
             </div>
+            
+            <!-- Links do rodapé -->
             <div class="footer-links">
                 <a href="#">Privacy Policy</a>
                 <a href="#">Terms of Service</a>
@@ -88,12 +109,11 @@
         </div>
     </footer>
 
-    <!-- Include the separated JavaScript files -->
+    <!-- Scripts JavaScript -->
     <script src="{{ url_for('static', filename='scripts/sidebar.js') }}"></script>
     <script src="{{ url_for('static', filename='scripts/search.js') }}"></script>
     <script src="{{ url_for('static', filename='scripts/auth.js') }}"></script>
     <script src="{{ url_for('static', filename='scripts/darkmode.js') }}"></script>
-
 
 </body>
 </html>

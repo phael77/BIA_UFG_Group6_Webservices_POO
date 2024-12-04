@@ -1,12 +1,19 @@
 {% extends 'base.html' %}
+<!-- Este template herda do 'base.html', que provavelmente define o layout geral da página, como cabeçalho e rodapé. O conteúdo específico da página de produto será inserido no bloco 'content' do template base. -->
 
 {% block title %}Produto - Empresa Confiável{% endblock %}
+<!-- Define o título da página como "Produto - Empresa Confiável", que será exibido na aba do navegador. -->
 
 {% block content %}
+<!-- Define o conteúdo principal da página, que será inserido no bloco 'content' do template base.html. -->
+
 <main class="product-page">
     <div class="product-container">
+        <!-- Container principal para o produto, que contém a imagem e as informações do produto. -->
+
         <!-- Product Image -->
         <div class="product-image">
+            <!-- Se o produto tiver uma imagem associada, exibe a imagem do produto. Caso contrário, exibe uma imagem padrão (default.jpg). -->
             {% if product.image %}
                 <img src="{{ url_for('static', filename='images/' + product.image) }}" alt="Product Image" class="product-img">
             {% else %}
@@ -16,27 +23,36 @@
 
         <!-- Product Information -->
         <div class="product-details">
+            <!-- Exibe o nome, descrição e preço do produto. -->
             <h1 class="product-title">{{ product.name }}</h1>
             <p class="product-description">{{ product.description }}</p>
             <p class="product-price">R$ {{ '%.2f' % product.price }}</p>
+            <!-- O preço do produto é formatado com duas casas decimais (R$ xx.xx). -->
 
             <!-- Add to Cart Form -->
             <form id="add-to-cart-form" action="{{ url_for('add_to_cart', product_id=product.id) }}" method="POST">
+                <!-- Formulário para adicionar o produto ao carrinho. Quando o formulário for enviado, será feita uma requisição para a rota 'add_to_cart' com o ID do produto. -->
+
                 <input type="hidden" name="name" value="{{ product.name }}">
                 <input type="hidden" name="price" value="{{ product.price }}">
                 <input type="hidden" name="image" value="{{ product.image }}">
+                <!-- Campos ocultos para enviar o nome, preço e imagem do produto ao servidor. -->
 
                 <!-- Product Quantity -->
                 <div class="product-quantity">
+                    <!-- Seção para selecionar a quantidade do produto. -->
                     <label for="quantity">Quantidade:</label>
                     <input type="number" id="quantity" name="quantity" value="1" min="1" max="100">
+                    <!-- Campo de entrada para o número de unidades. O valor inicial é 1, o mínimo é 1 e o máximo é 100. -->
                 </div>
 
                 <!-- Product Size Selector -->
                 <div class="product-size">
+                    <!-- Seção para selecionar o tamanho do produto, caso o produto tenha tamanhos disponíveis. -->
                     <label for="size">Tamanho:</label>
                     <select id="size" name="size">
                         {% for size in product.sizes %}
+                            <!-- Para cada tamanho disponível no produto, uma opção é adicionada ao seletor. -->
                             <option value="{{ size }}">{{ size }}</option>
                         {% endfor %}
                     </select>
@@ -44,6 +60,7 @@
 
                 <!-- Add to Cart Button -->
                 <button type="button" class="add-to-cart-button" onclick="showLoginPopup()">Adicionar ao carrinho</button>
+                <!-- Botão para adicionar o produto ao carrinho. Ao invés de submeter o formulário diretamente, a função 'showLoginPopup()' é chamada, que provavelmente verifica se o usuário está logado. -->
             </form>
         </div>
     </div>
@@ -51,19 +68,24 @@
 
 <!-- Modal for Login Alert -->
 <div id="login-popup" class="modal">
+    <!-- Modal para alertar o usuário sobre a necessidade de login. -->
     <div class="modal-content">
+        <!-- Conteúdo do modal -->
         <span class="close" onclick="closePopup()">&times;</span>
+        <!-- Ícone para fechar o modal, que chama a função 'closePopup()' para fechar o pop-up. -->
         <h2>Você precisa estar logado para adicionar o produto ao carrinho!</h2>
         <p><a href="/login">Faça login</a> ou <a href="/register">Cadastre-se</a> para continuar.</p>
+        <!-- Mensagem de alerta que instrui o usuário a fazer login ou se registrar. Links para as páginas de login e registro são fornecidos. -->
     </div>
 </div>
 
 {% endblock %}
+<!-- Fim do bloco 'content'. -->
 
 {% block scripts %}
-<!-- Include external JavaScript file -->
+<!-- Espaço reservado para incluir scripts JavaScript, caso necessário. -->
 {% endblock %}
 
 {% block styles %}
-<!-- Include external CSS file -->
+<!-- Espaço reservado para incluir arquivos de estilo CSS, caso necessário. -->
 {% endblock %}

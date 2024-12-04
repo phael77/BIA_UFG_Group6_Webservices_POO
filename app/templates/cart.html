@@ -1,56 +1,93 @@
 {% extends "base-logged.html" %}
+<!-- Extende o template base-logged.html, ou seja, utiliza a estrutura do layout base para páginas onde o usuário está logado. -->
 
 {% block title %}Página do Carrinho{% endblock %}
+<!-- Define o título da página, que será exibido na aba do navegador. -->
 
 {% block content %}
+<!-- Define o conteúdo da página, que será renderizado dentro do bloco 'content' no template base. -->
+
 <h1>Página do Carrinho</h1>
+<!-- Título da página do carrinho. -->
 
 <section class="cart-page">
     {% if cart %}
+    <!-- Verifica se o carrinho contém itens, ou seja, se existe um carrinho com produtos. -->
+
         {% for item in cart %}
+        <!-- Para cada item no carrinho, um novo bloco será gerado para esse item específico. -->
         <div class="cart-page-item" data-item-id="{{ item['id'] }}" data-item-price="{{ item['price'] }}">
+            <!-- Cria um container para cada item no carrinho com dados sobre o ID e preço do item. -->
+
             <div class="cart-page-item-details">
+                <!-- Detalhes do item (imagem e informações do produto). -->
                 <img src="{{ url_for('static', filename='images/' + item['image']) }}" alt="{{ item['name'] }}" class="cart-page-item-image">
+                <!-- Exibe a imagem do item no carrinho, usando o caminho relativo à pasta 'static'. -->
+
                 <div class="cart-page-item-info">
+                    <!-- Informações adicionais do item. -->
                     <h2>{{ item['name'] }}</h2>
+                    <!-- Nome do item. -->
+
                     <p>R$ {{ '%.2f' % item['price'] }}</p>
+                    <!-- Preço do item, formatado para exibição em moeda. -->
+
                     <p>Tamanho: {{ item['size'] }}</p>
+                    <!-- Tamanho do item, se aplicável. -->
                 </div>
             </div>
-            
+
             <div class="cart-page-item-actions">
+                <!-- Área para ações do item (quantidade, total e remoção). -->
+                
                 <div class="cart-page-item-quantity">
+                    <!-- Controle de quantidade de itens no carrinho. -->
                     <button class="quantity-btn decrease" data-item-id="{{ item['id'] }}">-</button>
+                    <!-- Botão para diminuir a quantidade do item. -->
+                    
                     <span class="quantity-value">{{ item['quantity'] }}</span>
+                    <!-- Exibe a quantidade atual do item no carrinho. -->
+                    
                     <button class="quantity-btn increase" data-item-id="{{ item['id'] }}">+</button>
+                    <!-- Botão para aumentar a quantidade do item. -->
                 </div>
 
                 <div class="cart-page-item-total">
+                    <!-- Exibe o total do item (preço * quantidade). -->
                     <span class="item-total">Total: R$ {{ '%.2f' % (item['price'] * item['quantity']) }}</span>
+                    <!-- Total calculado para esse item, formatado para exibição em moeda. -->
                 </div>
 
                 <form action="{{ url_for('remove_from_cart', product_id=item['id'], size=item['size']) }}" method="POST">
+                    <!-- Formulário para remover o item do carrinho. -->
                     <button type="submit" class="remove">Remover</button>
+                    <!-- Botão para enviar o formulário e remover o item do carrinho. -->
                 </form>
             </div>
         </div>
         {% endfor %}
+        <!-- Fim do loop para iterar sobre os itens no carrinho. -->
         
         <div class="cart-page-summary">
+            <!-- Resumo do carrinho com o subtotal e botão de checkout. -->
             <p>Subtotal: <span id="total-price">R$ {{ '%.2f' % total_price }}</span></p>
+            <!-- Exibe o subtotal do carrinho. -->
             <a href="{{ url_for('checkout') }}">
                 <button class="checkout">Finalizar Compra</button>
+                <!-- Botão para ir para a página de checkout e finalizar a compra. -->
             </a>
         </div>
 
     {% else %}
+    <!-- Caso não haja itens no carrinho, exibe uma mensagem informando que o carrinho está vazio. -->
         <p>Seu carrinho está vazio.</p>
     {% endif %}
+    <!-- Fim da verificação se o carrinho tem itens. -->
 </section>
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        // Function to update the price
+        // Função que atualiza o preço total do carrinho quando as quantidades são alteradas.
         function updateTotalPrice() {
             let totalPrice = 0;
             const itemTotals = document.querySelectorAll('.cart-page-item');
@@ -64,7 +101,7 @@
             document.getElementById('total-price').innerText = 'R$ ' + totalPrice.toFixed(2);
         }
 
-        // Attach event listeners to quantity buttons
+        // Adiciona listeners de evento para os botões de aumento e diminuição de quantidade.
         const increaseBtns = document.querySelectorAll('.quantity-btn.increase');
         const decreaseBtns = document.querySelectorAll('.quantity-btn.decrease');
 
@@ -88,9 +125,11 @@
             });
         });
 
-        // Initial price update
+        // Atualiza o preço total inicialmente ao carregar a página.
         updateTotalPrice();
     });
 </script>
+<!-- Script que permite alterar a quantidade de itens diretamente na página e recalcular o total do carrinho. -->
 
 {% endblock %}
+<!-- Fim do conteúdo da página. -->

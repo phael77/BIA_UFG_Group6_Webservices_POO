@@ -6,29 +6,39 @@
 <main class="product-page">
     <h1>Adicionar Novo Produto</h1>
 
-    <!-- Error message for invalid inputs -->
+    <!-- Exibição de mensagem de erro, caso exista algum erro de validação -->
     {% if error %}
         <div class="error">{{ error }}</div>
     {% endif %}
     
+    <!-- Formulário para adicionar um novo produto -->
     <form method="POST" enctype="multipart/form-data" class="product-edit-form">
+        
+        <!-- Campo para o nome do produto -->
         <label for="name">Nome do Produto:</label>
         <input type="text" id="name" name="name" required>
     
+        <!-- Campo para a descrição do produto -->
         <label for="description">Descrição:</label>
         <textarea id="description" name="description" required></textarea>
     
+        <!-- Campo para o preço do produto -->
         <label for="price">Preço:</label>
         <input type="number" id="price" name="price" required step="0.01">
     
+        <!-- Seção de tamanhos disponíveis -->
         <label for="sizes">Tamanhos:</label>
         <div class="product-size" style="display: flex; gap: 20px; flex-wrap: wrap;">
+            
+            <!-- Geração dos tamanhos fixos (P, M, G, GG) com checkboxes -->
             {% for size in ['P', 'M', 'G', 'GG'] %}
                 <div>
                     <input type="checkbox" id="size_{{ size }}" name="sizes" value="{{ size }}">
                     <label for="size_{{ size }}">{{ size }}</label>
                 </div>
             {% endfor %}
+            
+            <!-- Campo para inserir outro tamanho, visível apenas se o checkbox "Outro" for marcado -->
             <div>
                 <input type="checkbox" id="size_other" name="size_other" value="other" onchange="toggleOtherSizeInput()">
                 <label for="size_other">Outro</label>
@@ -36,24 +46,27 @@
             </div>
         </div>
     
+        <!-- Campo para envio de imagem do produto -->
         <label for="image">Imagem do Produto:</label>
         <input type="file" id="image" name="image" accept="image/*">
     
-        <!-- Title over the add button -->
+        <!-- Título sobre o botão de adicionar produto -->
         <div class="button-title">
             <h3>Adicionar Produto</h3>
         </div>
+        
+        <!-- Botão para enviar o formulário e adicionar o produto -->
         <button type="submit" class="edit-button">Adicionar Produto</button>
     </form>
 </main>
 
 <script>
-    // Função para alternar a exibição do campo de texto "Outro" baseado no checkbox
+    // Função que alterna a visibilidade do campo de texto para "Outro tamanho"
     function toggleOtherSizeInput() {
         var otherSizeCheckbox = document.getElementById("size_other");
         var otherSizeInput = document.getElementById("other_size");
         
-        // Se o checkbox "Outro" estiver marcado, exibe o campo de texto
+        // Se o checkbox "Outro" estiver marcado, o campo de texto para o outro tamanho será exibido
         if (otherSizeCheckbox.checked) {
             otherSizeInput.style.display = "inline";
         } else {
@@ -61,7 +74,7 @@
         }
     }
 
-    // Chama a função para ajustar a visibilidade do campo de texto quando a página é carregada
+    // Chama a função ao carregar a página para garantir que o campo de "Outro tamanho" esteja visível ou não
     window.onload = function() {
         toggleOtherSizeInput();
     };

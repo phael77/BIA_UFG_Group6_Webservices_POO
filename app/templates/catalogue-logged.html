@@ -1,40 +1,63 @@
 {% extends "base-logged.html" %}
+<!-- Este template herda "base-logged.html", ou seja, ele usa o layout padrão para páginas de usuários logados. -->
 
 {% block title %}Catálogo de Produtos{% endblock %}
+<!-- O título da página será "Catálogo de Produtos", que aparecerá na aba do navegador. -->
 
 {% block content %}
+<!-- Este é o bloco principal de conteúdo da página. A informação aqui será inserida no bloco 'content' do template base. -->
 
 <main class="catalog">
     <h1>Catálogo de Produtos</h1>
+    <!-- Cabeçalho principal da página, indicando que o usuário está no catálogo de produtos. -->
     
     <div class="catalog-grid">
+        <!-- Container para a grade de produtos. A classe "catalog-grid" provavelmente aplica uma estrutura de grid (como o CSS Grid ou Flexbox). -->
+        
         {% for product in PRODUCTS %}
+        <!-- Inicia um loop para iterar sobre todos os produtos na lista "PRODUCTS". -->
+        
         <div class="catalog-item">
-            <!-- Product Image -->
+            <!-- Cada produto é exibido dentro de um container com a classe "catalog-item". -->
+            
+            <!-- Imagem do Produto -->
             <img src="{{ product.image }}" alt="{{ product.name }}" class="product-img">
+            <!-- A imagem do produto é exibida aqui. "product.image" contém o caminho da imagem, e o texto alternativo é o nome do produto. -->
             
-            <!-- Product Name -->
+            <!-- Nome do Produto -->
             <h2>{{ product.name }}</h2>
+            <!-- Exibe o nome do produto. -->
             
-            <!-- Product Price -->
+            <!-- Preço do Produto -->
             <p class="product-price">R$ {{ '%.2f' | format(product.price) }}</p>
-
-            <!-- Sizes List as Circular Balls -->
+            <!-- Exibe o preço do produto formatado com duas casas decimais (exemplo: R$ 19,99). "product.price" é o preço do produto. -->
+            
+            <!-- Lista de Tamanhos -->
             <div class="product-sizes">
                 <h4>Tamanhos: 
                     {% for size in product.sizes %}
-                        <span class="size-ball">{{ size }}</span>{% if not loop.last %} {% endif %}
+                    <!-- Loop sobre todos os tamanhos disponíveis para o produto -->
+                        <span class="size-ball">{{ size }}</span>
+                        <!-- Cada tamanho é exibido como um "círculo" usando a classe CSS "size-ball". -->
                     {% endfor %}
                 </h4>
             </div>
             
-            <!-- "See Details" Button -->
+            <!-- Botão de Ver Detalhes -->
             <a href="{{ url_for('user_product', product_id=product.id) }}">
-            <button class="see-details-button" onclick="viewDetails('{{ product.id }}')">Ver Detalhes</button>
+            <!-- O link leva o usuário para a página de detalhes do produto, com o "product.id" passado como argumento na URL. -->
+                <button class="see-details-button" onclick="viewDetails('{{ product.id }}')">Ver Detalhes</button>
+                <!-- O botão "Ver Detalhes" chama uma função JavaScript "viewDetails", passando o ID do produto. Isso poderia ser utilizado para ações dinâmicas no frontend. -->
             </a>
         </div>
+        <!-- Fim de cada item de produto. -->
+        
         {% endfor %}
+        <!-- Fim do loop de produtos. -->
+        
     </div>
+    <!-- Fim do container de grid de produtos. -->
 </main>
 
 {% endblock %}
+<!-- Fim do conteúdo principal. -->

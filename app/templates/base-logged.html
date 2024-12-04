@@ -1,9 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Define a codificação de caracteres e a meta tag de viewport para responsividade -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Título dinâmico da página, que pode ser alterado em cada página extendida -->
     <title>{% block title %}Empresa Confiável{% endblock %}</title>
+
+    <!-- Links para arquivos de estilo CSS específicos -->
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/base.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/login.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/register.css') }}">
@@ -13,22 +18,29 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/catalogue.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/checkout.css') }}">
 
-    <!-- Include Font Awesome for icons -->
+    <!-- Inclui o Font Awesome para ícones -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
 
+    <!-- Cabeçalho da página com o nome do site e navegação -->
     <header class="header">
+        <!-- Título do site com link para a página inicial -->
         <div class="site-title">
             <a href="/user">Empresa Confiável</a>
         </div>
+
+        <!-- Botão para acessar o catálogo de produtos -->
         <a href="/user/catalogo">
             <button class="catalogue-button">Catalogue</button>
-        </a>        <!-- Search Bar with Magnifying Glass Icon -->
+        </a>
+
+        <!-- Barra de pesquisa com ícone de lupa -->
         <div class="search-bar">
             <input type="text" autocomplete="off" id="searchInput" placeholder="Search...">
-            <!-- Magnifying glass icon on the right -->
+            <!-- Ícone de lupa para indicar que é uma barra de pesquisa -->
             <i class="fa fa-search" id="searchIcon"></i>
+            <!-- Sugestões de pesquisa que aparecem ao digitar -->
             <div class="search-bar-suggestions">
                 <p>Sugestões de pesquisa</p>
                 <p>Sugestão 1</p>
@@ -37,25 +49,30 @@
             </div>
         </div>
   
+        <!-- Botões do cabeçalho: Favoritos, Carrinho e Perfil -->
         <div class="header-buttons">
-            <!-- Favorites button with heart icon -->
+            <!-- Botão para favoritos com ícone de coração -->
             <button class="favorites">
                 <i class="fa fa-heart" style="font-size:24px"></i>
             </button>
-            <!-- Cart button with shopping cart icon -->
+
+            <!-- Botão para o carrinho de compras com ícone de carrinho -->
             <button class="cart">
                 <i class="fa fa-shopping-cart" style="font-size:24px"></i>
             </button>
+            <!-- Dropdown para o carrinho de compras -->
             <div class="cart-dropdown">
                 <p>Conteúdo do carrinho</p>
                 <a href="/cart">
                     <button class="cart-page-button">Go to cart</button>
                 </a>
             </div>
-            <!-- Profile button with user icon -->
+
+            <!-- Botão de perfil com ícone de usuário -->
             <button class="profile">
                 <i class="fa fa-user" style="font-size:24px"></i>
             </button>
+            <!-- Menu suspenso do perfil não logado -->
             <div class="profile-dropdown-unlogged" id="profile-dropdown-unlogged">
                 <a href="/">
                     <button class="logout-button">
@@ -66,9 +83,10 @@
         </div>
     </header>
 
-    <!-- Dark Mode Button in a separate corner -->
+    <!-- Botão para alternar o modo escuro -->
     <button class="toggle-darkmode">🌙</button>
 
+    <!-- Barra lateral com links de navegação -->
     <div class="sidebar">
         <ul>
             <li><a href="/user">Home</a></li>
@@ -78,16 +96,20 @@
         </ul>
     </div>
 
+    <!-- Botão para alternar a visibilidade da barra lateral -->
     <button class="toggle-sidebar" onclick="toggleSidebar()">≡</button>
 
+    <!-- Bloco principal da página onde o conteúdo será dinâmico -->
     <main>
         {% block content %}{% endblock %}
     </main>
 
+    <!-- Rodapé com informações de direitos autorais e links para redes sociais e outras páginas -->
     <footer class="footer">
         <div class="footer-content">
             <p>&copy; 2024 Empresa Confiável. All rights reserved</p>
             <div class="social-icons">
+                <!-- Ícones de redes sociais -->
                 <a href="#" class="social-icon"><i class="fa fa-facebook"></i></a>
                 <a href="#" class="social-icon"><i class="fa fa-twitter"></i></a>
                 <a href="#" class="social-icon"><i class="fa fa-instagram"></i></a>
@@ -95,6 +117,7 @@
                 <a href="#" class="social-icon"><i class="fa fa-linkedin"></i></a>
             </div>
             <div class="footer-links">
+                <!-- Links do rodapé para políticas e contato -->
                 <a href="#">Privacy Policy</a>
                 <a href="#">Terms of Service</a>
                 <a href="#">Contact</a>
@@ -102,13 +125,12 @@
         </div>
     </footer>
 
-    <!-- Include the separated JavaScript files -->
+    <!-- Inclusão de scripts JavaScript para funcionalidades dinâmicas -->
     <script src="{{ url_for('static', filename='scripts/sidebar.js') }}"></script>
     <script src="{{ url_for('static', filename='scripts/search.js') }}"></script>
     <script src="{{ url_for('static', filename='scripts/auth.js') }}"></script>
     <script src="{{ url_for('static', filename='scripts/darkmode.js') }}"></script>
     <script src="{{ url_for('static', filename='scripts/checkout.js') }}"></script>
-
 
 </body>
 </html>

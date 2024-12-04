@@ -1,50 +1,85 @@
 {% extends "base-logged.html" %}
+<!-- Estende o template base-logged.html, que define a estrutura base da página para usuários logados. -->
 
 {% block title %}Home - Empresa Confiável{% endblock %}
+<!-- Define o título da página que aparecerá na aba do navegador. -->
 
 {% block content %}
+<!-- Início do conteúdo específico da página. Será inserido no bloco 'content' do template base-logged.html. -->
 
+<!-- Link para o arquivo de estilo CSS da página -->
 <link rel="stylesheet" href="{{ url_for('static', filename='styles/index.css') }}">
 
+<!-- Seção de Promoções -->
 <div class="promo-section">
     <h2 class="section-title">Promoções</h2>
+    <!-- Título da seção de promoções -->
+
+    <!-- Carousel de imagens de promoções -->
     <div class="carousel">
         <img src="https://via.placeholder.com/600x400" alt="Promoção 1">
+        <!-- Imagem 1 do carousel de promoções -->
         <img src="https://via.placeholder.com/600x400" alt="Promoção 2">
+        <!-- Imagem 2 do carousel de promoções -->
         <img src="https://via.placeholder.com/600x400" alt="Promoção 3">
+        <!-- Imagem 3 do carousel de promoções -->
     </div>
 </div>
 
+<!-- Seção de Modelos -->
 <div class="models-section">
     <h2 class="section-title">Modelos</h2>
+    <!-- Título da seção de modelos -->
+
+    <!-- Menu de filtro para diferentes categorias de modelos -->
     <div class="filter-menu">
         <button>Conjuntos</button>
+        <!-- Botão para filtrar modelos da categoria "Conjuntos" -->
         <button>Blusas</button>
+        <!-- Botão para filtrar modelos da categoria "Blusas" -->
         <button>Calças</button>
+        <!-- Botão para filtrar modelos da categoria "Calças" -->
         <button>Shorts</button>
+        <!-- Botão para filtrar modelos da categoria "Shorts" -->
         <button>Bolsas</button>
+        <!-- Botão para filtrar modelos da categoria "Bolsas" -->
     </div>
+
+    <!-- Grid de modelos -->
     <div class="model-grid">
+        <!-- Cada modelo é representado por um cartão com imagem e descrição -->
         <div class="model-card">
             <img src="https://via.placeholder.com/200x300" alt="Modelo 1">
+            <!-- Imagem do Modelo 1 -->
             <p>Conjunto de Babado Listrado</p>
+            <!-- Descrição do Modelo 1 -->
         </div>
         <div class="model-card">
             <img src="https://via.placeholder.com/200x300" alt="Modelo 2">
+            <!-- Imagem do Modelo 2 -->
             <p>Conjunto Pantalona Linho</p>
+            <!-- Descrição do Modelo 2 -->
         </div>
         <div class="model-card">
             <img src="https://via.placeholder.com/200x300" alt="Modelo 3">
+            <!-- Imagem do Modelo 3 -->
             <p>Conjunto Social</p>
+            <!-- Descrição do Modelo 3 -->
         </div>
         <div class="model-card">
             <img src="https://via.placeholder.com/200x300" alt="Modelo 4">
+            <!-- Imagem do Modelo 4 -->
             <p>Conjunto Plus Size</p>
+            <!-- Descrição do Modelo 4 -->
         </div>
     </div>
 </div>
 
+<!-- Seção para explorar mais -->
 <div class="explore-section">
     <a href="#" class="explore-button">Explore More →</a>
+    <!-- Botão para "explorar mais", que pode redirecionar o usuário para outra página ou mostrar mais opções -->
 </div>
+
 {% endblock %}
+<!-- Fim do bloco de conteúdo -->

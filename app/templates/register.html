@@ -1,44 +1,65 @@
 {% extends "base.html" %}
+<!-- Este template herda do 'base.html', que provavelmente define o layout geral da página (cabeçalho, rodapé etc.). O conteúdo específico da criação de conta será inserido no bloco 'content'. -->
 
 {% block title %}Criar Conta - Empresa Confiável{% endblock %}
+<!-- Define o título da página como "Criar Conta - Empresa Confiável", que será exibido na aba do navegador. -->
 
 {% block content %}
+<!-- Bloco de conteúdo específico da página de criação de conta. -->
 
 <div class="register">
+    <!-- Div principal para o formulário de registro. -->
+
     <form class="card" id="registerForm" method="POST" action="/register">
+        <!-- Formulário para criar uma nova conta. O método POST envia os dados para o servidor, especificamente para a rota '/register'. -->
+
         <div class="card-header">
             <h2>Criar Conta</h2>
         </div>
 
         <div class="card-content">
+            <!-- Seção de conteúdo do formulário onde os campos de entrada estão localizados. -->
+            
             <div class="card-content-area">
+                <!-- Campo para o nome de usuário. -->
                 <label for="username">Usuário</label>
                 <input type="text" id="username" name="username" autocomplete="off" required>
+                <!-- O campo 'username' é obrigatório, sem preenchimento automático (autocomplete). -->
             </div>
 
             <div class="card-content-area">
+                <!-- Campo para a senha. -->
                 <label for="password">Senha</label>
                 <input type="password" id="password" name="password" autocomplete="off" required>
+                <!-- O campo 'password' é obrigatório e também sem autocomplete. -->
             </div>
 
             <div class="card-content-area">
+                <!-- Campo para confirmar a senha. -->
                 <label for="confirmPassword">Confirmar Senha</label>
                 <input type="password" id="confirmPassword" name="confirmPassword" autocomplete="off" required>
+                <!-- O campo 'confirmPassword' é obrigatório e também sem autocomplete. -->
             </div>
         </div>
 
         <div class="card-footer">
+            <!-- Rodapé do formulário com o botão de envio e link para o login. -->
             <input type="submit" value="Criar Conta" class="submit">
+            <!-- Botão de submissão para enviar o formulário e criar a conta. -->
             <a href="/login" id="showLoginForm" class="recuperar_senha">Já tem uma conta? Faça login</a>
+            <!-- Link que redireciona o usuário para a página de login caso já tenha uma conta. -->
         </div>
 
         <!-- To show error message -->
         <div id="errorMessage" style="color: red; display: none;">
+            <!-- Div para mostrar mensagens de erro quando as senhas não coincidirem ou o nome de usuário já estiver em uso. -->
             As senhas não coincidem ou o nome de usuário já está em uso.
         </div>
     </form>
 </div>
 
 <script src="{{ url_for('static', filename='scripts/auth.js') }}"></script>
+<!-- Script JavaScript para a validação de autenticação. A lógica pode ser incluída em 'auth.js'. -->
 
 {% endblock %}
+<!-- Fim do bloco 'content', onde o conteúdo da página é exibido. -->

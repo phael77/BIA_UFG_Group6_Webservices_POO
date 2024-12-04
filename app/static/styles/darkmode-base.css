@@ -1,31 +1,18 @@
-:root {
-    --background-dark: #121212;
-    --background-lighter-dark: #1a1a1a; /* Ajustado para um tom ainda mais escuro */
-    --background-grey: #262626; /* Tom de cinza mais profundo */
-    --background-input: #2a2a2a; /* Tom ligeiramente mais escuro */
-    --border-dark: #444; /* Borda mais escura */
-    --highlight-pink: #d81b60; /* Rosa mais escuro puxando para o vermelho */
-    --gradient-pink: linear-gradient(135deg, #ff669a, #d81b60); /* Gradiente ajustado */
-    --text-light: #ffffff; /* Mantido como branco */
-    --text-grey: #999; /* Cinza mais escuro para contraste */
-    --text-grey-light: #aaa; /* Cinza claro ajustado */
-}
-
 /* Dark Mode Styles */
 body.dark-mode {
-    background-color: var(--background-dark); /* Dark background */
+    background-color: #121212; /* Dark background */
     color: white;
     transition: none; /* Remove the fade transition */
 }
 
 body.dark-mode main {
-    background-color: var(--background-lighter-dark); /* Slightly lighter dark background */
+    background-color: #1e1e1e; /* Slightly lighter dark background */
     color: white;
 }
 
 /* Sidebar in Dark Mode */
 body.dark-mode .sidebar {
-    background-color: var(--background-grey); /* Dark grey sidebar */
+    background-color: #2c2c2c; /* Dark grey sidebar */
 }
 
 body.dark-mode .sidebar ul li a {
@@ -38,7 +25,7 @@ body.dark-mode .sidebar ul li a:hover {
 
 /* Header in Dark Mode */
 body.dark-mode .header {
-    background: var(--gradient-pink); /* Bright pink header */
+    background: linear-gradient(135deg, #ff99cc, #ff3399); /* Bright pink header */
 }
 
 /* Site Title Glow in Dark Mode */
@@ -67,42 +54,42 @@ body.dark-mode .footer-links a {
 }
 
 body.dark-mode .footer-links a:hover {
-    color: var(--highlight-pink); /* Bright pink on hover */
+    color: #e91e63; /* Bright pink on hover */
 }
 
 /* Catalogue Button and Header Buttons in Dark Mode */
 body.dark-mode .catalogue-button,
 body.dark-mode .header-buttons button {
     color: white;
-    background: var(--gradient-pink); /* Bright pink buttons */
+    background: linear-gradient(135deg, #ff99cc, #ff3399); /* Bright pink buttons */
 }
 
 body.dark-mode .catalogue-button:hover,
 body.dark-mode .header-buttons button:hover {
-    background-color: var(--highlight-pink); /* Slightly darker pink on hover */
+    background-color: #e91e63; /* Slightly darker pink on hover */
 }
 
 /* Search Bar in Dark Mode */
 body.dark-mode .search-bar input {
-    background-color: var(--background-input); /* Dark background for input */
+    background-color: #333; /* Dark background for input */
     color: white; /* Text color */
-    border: 1px solid var(--border-dark); /* Subtle border */
+    border: 1px solid #555; /* Subtle border */
 }
 
 body.dark-mode .search-bar input:focus {
-    border-color: var(--highlight-pink); /* Bright pink border on focus */
+    border-color: #e91e63; /* Bright pink border on focus */
 }
 
 /* Dark Mode Styles for Search Bar Suggestions */
 body.dark-mode .search-bar-suggestions {
     display: none;
     color: white; /* White text for dark mode */
-    background-color: var(--background-input); /* Dark background for suggestions */
+    background-color: #333; /* Dark background for suggestions */
     top: 100%;
     left: 0;
     position: absolute;
     width: 625px;
-    border: 1px solid var(--border-dark); /* Darker border for dark mode */
+    border: 1px solid #555; /* Darker border for dark mode */
     z-index: 1;
     transition: opacity 0.3s ease, visibility 0s 0.3s;
 }
@@ -119,40 +106,40 @@ body.dark-mode .search-bar-suggestions p:hover {
 
 /* Dark Mode Focus on Search Input */
 body.dark-mode #searchInput:focus {
-    border-color: var(--highlight-pink); /* Bright pink border on focus */
+    border-color: #e91e63; /* Bright pink border on focus */
 }
 
 /* Profile Dropdown (Unlogged) in Dark Mode */
 body.dark-mode .profile-dropdown-unlogged {
-    background-color: var(--background-input); /* Dark grey */
+    background-color: #333; /* Dark grey */
     color: white;
 }
 
 body.dark-mode .profile-dropdown-unlogged .login-button,
 body.dark-mode .profile-dropdown-unlogged .register-button {
-    background: var(--gradient-pink); /* Bright pink buttons */
+    background: linear-gradient(135deg, #ff99cc, #ff3399); /* Bright pink buttons */
     color: white;
     border-radius: 5px;
 }
 
 body.dark-mode .profile-dropdown-unlogged .login-button:hover,
 body.dark-mode .profile-dropdown-unlogged .register-button:hover {
-    background-color: var(--highlight-pink); /* Slightly darker pink on hover */
+    background-color: #e91e63; /* Slightly darker pink on hover */
 }
 
 /* Cart Dropdown in Dark Mode */
 body.dark-mode .cart-dropdown {
-    background-color: var(--background-input); /* Dark background */
+    background-color: #333; /* Dark background */
     color: white;
 }
 
 body.dark-mode .cart-dropdown .cart-page-button {
-    background: var(--gradient-pink); /* Bright pink cart button */
+    background: linear-gradient(135deg, #ff99cc, #ff3399); /* Bright pink cart button */
     color: white;
 }
 
 body.dark-mode .cart-dropdown .cart-page-button:hover {
-    background-color: var(--highlight-pink); /* Slightly darker pink for hover effect */
+    background-color: #e91e63; /* Slightly darker pink for hover effect */
 }
 
 /* Footer Social Icons in Dark Mode */
@@ -161,11 +148,11 @@ body.dark-mode .social-icon {
 }
 
 body.dark-mode .social-icon:hover {
-    color: var(--highlight-pink); /* Bright pink icons on hover */
+    color: #e91e63; /* Bright pink icons on hover */
 }
 
 body.dark-mode .social-icon:active {
-    color: var(--highlight-pink); /* Slightly darker pink on active */
+    color: #e91e63; /* Slightly darker pink on active */
 }
 
 /* Dark Mode Styling */
@@ -189,38 +176,38 @@ body.dark-mode .card-header h2 {
 
 /* Dark Mode for Card Labels */
 body.dark-mode .card-content-area label {
-    color: var(--text-grey); /* Light color for labels in dark mode */
+    color: #bbb; /* Light color for labels in dark mode */
     transition: none;
 }
 
 /* Dark Mode for Card Inputs */
 body.dark-mode .card-content-area input {
-    background-color: var(--background-input); /* Dark input background */
+    background-color: #333; /* Dark input background */
     color: white; /* Light text inside input */
-    border-color: var(--border-dark); /* Darker border color for inputs */
+    border-color: #555; /* Darker border color for inputs */
     transition: none;
 }
 
 /* Dark Mode for Focused Input */
 body.dark-mode .card-content-area input:focus {
     outline-color: #ff66b2; /* Bright pink outline when focused */
-    border-color: var(--highlight-pink); /* Bright pink border when focused */
+    border-color: #e91e63; /* Bright pink border when focused */
 }
 
 /* Dark Mode for Submit Button */
 body.dark-mode .card-footer input.submit {
-    background: var(--gradient-pink); /* Bright pink for submit button */
+    background: linear-gradient(135deg, #ff99cc, #ff3399); /* Bright pink for submit button */
     transition: none;
 }
 
 /* Dark Mode Hover Effect for Submit Button */
 body.dark-mode .card-footer input.submit:hover {
-    background-color: var(--highlight-pink); /* Slightly darker pink on hover in dark mode */
+    background-color: #e91e63; /* Slightly darker pink on hover in dark mode */
 }
 
 /* Dark Mode for Forgotten Password Link */
 body.dark-mode .card-footer .recuperar_senha {
-    color: var(--text-grey); /* Light color for link in dark mode */
+    color: #bbb; /* Light color for link in dark mode */
 }
 
 /* Dark Mode for Error Message */
@@ -253,13 +240,13 @@ body.dark-mode .product-title {
 
 /* Dark Mode for Product Description */
 body.dark-mode .product-description {
-    color: var(--text-grey); /* Lighter text color for product description in dark mode */
+    color: #bbb; /* Lighter text color for product description in dark mode */
     transition: none; /* Disable transition */
 }
 
 /* Dark Mode for Product Price */
 body.dark-mode .product-price {
-    color: var(--highlight-pink); /* Bright pink for price in dark mode */
+    color: #e91e63; /* Bright pink for price in dark mode */
     transition: none; /* Disable transition */
 }
 
@@ -270,27 +257,27 @@ body.dark-mode .product-quantity label {
 }
 
 body.dark-mode .product-quantity input {
-    background-color: var(--background-input); /* Dark background for input */
+    background-color: #333; /* Dark background for input */
     color: white; /* Light text color inside the input */
-    border-color: var(--border-dark); /* Darker border for input */
+    border-color: #555; /* Darker border for input */
     transition: none; /* Disable transition */
 }
 
 body.dark-mode .product-quantity input:focus {
     outline-color: #ff66b2; /* Bright pink outline on focus */
-    border-color: var(--highlight-pink); /* Bright pink border on focus */
+    border-color: #e91e63; /* Bright pink border on focus */
     transition: none; /* Disable transition */
 }
 
 /* Dark Mode for the Add to Cart Button */
 body.dark-mode .add-to-cart-button {
-    background: var(--gradient-pink); /* Bright pink for add-to-cart button */
+    background: linear-gradient(135deg, #ff99cc, #ff3399); /* Bright pink for add-to-cart button */
     color: white; /* White text on button */
     transition: none; /* Disable transition */
 }
 
 body.dark-mode .add-to-cart-button:hover {
-    background-color: var(--highlight-pink); /* Slightly darker pink on hover */
+    background-color: #e91e63; /* Slightly darker pink on hover */
     transition: none; /* Disable transition */
 }
 
@@ -306,14 +293,14 @@ body.dark-mode .product-size label {
 }
 
 body.dark-mode .product-size select {
-    background-color: var(--background-input); /* Dark background for select */
+    background-color: #333; /* Dark background for select */
     color: white; /* Light text color inside the select */
-    border-color: var(--border-dark); /* Darker border for select */
+    border-color: #555; /* Darker border for select */
 }
 
 body.dark-mode .product-size select:focus {
     outline-color: #ff66b2; /* Bright pink outline on focus */
-    border-color: var(--highlight-pink); /* Bright pink border on focus */
+    border-color: #e91e63; /* Bright pink border on focus */
 }
 
 /* Estilo geral */
@@ -321,7 +308,7 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    color: var(--background-input);
+    color: #333;
 }
 
 /* Cabeçalho */
@@ -379,7 +366,7 @@ body {
 .product-price {
     font-size: 16px;
     font-weight: bold;
-    color: var(--border-dark);
+    color: #555;
 }
 
 .add-to-cart-button {
@@ -407,13 +394,13 @@ body {
 
 /* Dark Mode for General Body */
 body.dark-mode {
-    background-color: var(--background-dark); /* Dark background */
+    background-color: #121212; /* Dark background */
     color: white;
 }
 
 /* Dark Mode for Header */
 body.dark-mode .header {
-    background: var(--gradient-pink); /* Bright pink header */
+    background: linear-gradient(135deg, #ff99cc, #ff3399); /* Bright pink header */
 }
 
 body.dark-mode .header .menu a {
@@ -431,13 +418,13 @@ body.dark-mode .catalog {
 }
 
 body.dark-mode .catalog h1 {
-    color: var(--highlight-pink); /* Bright pink header */
+    color: #e91e63; /* Bright pink header */
 }
 
 /* Dark Mode for Catalog Items */
 body.dark-mode .catalog-item {
     background-color: #2b2b2b; /* Darker background for catalog items */
-    border: 1px solid var(--border-dark); /* Darker border */
+    border: 1px solid #555; /* Darker border */
 }
 
 body.dark-mode .catalog-item:hover {
@@ -447,27 +434,27 @@ body.dark-mode .catalog-item:hover {
 
 /* Dark Mode for Product Price */
 body.dark-mode .product-price {
-    color: var(--highlight-pink); /* Bright pink for product price */
+    color: #e91e63; /* Bright pink for product price */
 }
 
 /* Dark Mode for Add to Cart Button */
 body.dark-mode .add-to-cart-button {
-    background: var(--gradient-pink); /* Bright pink button */
+    background: linear-gradient(135deg, #ff99cc, #ff3399); /* Bright pink button */
 }
 
 body.dark-mode .add-to-cart-button:hover {
-    background-color: var(--highlight-pink); /* Darker pink on hover */
+    background-color: #e91e63; /* Darker pink on hover */
 }
 
 /* Dark Mode for Product Quantity */
 body.dark-mode .product-quantity input {
-    background-color: var(--background-input); /* Dark background for quantity input */
+    background-color: #333; /* Dark background for quantity input */
     color: white; /* White text in input */
 }
 
 /* Dark Mode General Reset */
 body.dark-mode, html.dark-mode {
-    background-color: var(--background-dark); /* Dark background */
+    background-color: #121212; /* Dark background */
 }
 
 /* Dark Mode for Main Page Container */
@@ -486,9 +473,9 @@ body.dark-mode .product-edit-form input[type="text"],
 body.dark-mode .product-edit-form input[type="number"],
 body.dark-mode .product-edit-form textarea,
 body.dark-mode .product-edit-form select {
-    background-color: var(--background-input); /* Dark input background */
+    background-color: #333; /* Dark input background */
     color: white; /* White text in input */
-    border-color: var(--border-dark); /* Darker border color */
+    border-color: #555; /* Darker border color */
 }
 
 body.dark-mode .product-edit-form input[type="text"]:focus,
@@ -496,17 +483,17 @@ body.dark-mode .product-edit-form input[type="number"]:focus,
 body.dark-mode .product-edit-form textarea:focus,
 body.dark-mode .product-edit-form select:focus {
     background-color: #444; /* Slightly lighter dark background on focus */
-    border-color: var(--highlight-pink); /* Bright pink border on focus */
+    border-color: #e91e63; /* Bright pink border on focus */
 }
 
 /* Dark Mode for Buttons */
 body.dark-mode .product-edit-form .edit-button {
-    background: var(--gradient-pink); /* Bright pink */
+    background: linear-gradient(135deg, #ff99cc, #ff3399); /* Bright pink */
     color: white;
 }
 
 body.dark-mode .product-edit-form .edit-button:hover {
-    background-color: var(--highlight-pink); /* Darker pink on hover */
+    background-color: #e91e63; /* Darker pink on hover */
 }
 
 body.dark-mode .product-edit-form .delete-button {
@@ -520,7 +507,7 @@ body.dark-mode .product-edit-form .delete-button:hover {
 
 /* Dark Mode for Labels */
 body.dark-mode .product-edit-form label {
-    color: var(--text-grey); /* Lighter text for dark mode */
+    color: #bbb; /* Lighter text for dark mode */
 }
 
 /* Dark Mode for Page Title and Texts */
@@ -535,7 +522,7 @@ body.dark-mode .product-edit-form .product-size label {
 }
 
 body.dark-mode .product-edit-form .product-size input[type="checkbox"] {
-    accent-color: var(--highlight-pink); /* Pink accent for checkboxes */
+    accent-color: #e91e63; /* Pink accent for checkboxes */
 }
 
 /* Cart Page Container */
@@ -561,13 +548,13 @@ body.dark-mode .cart-page-item-info h2 {
 }
 
 body.dark-mode .cart-page-item-info p {
-    color: var(--text-grey-light); /* Texto secundário mais claro */
+    color: #ccc; /* Texto secundário mais claro */
 }
 
 /* Quantity Controls */
 body.dark-mode .quantity-btn {
-    background-color: var(--background-input); /* Fundo escuro */
-    border: 1px solid var(--border-dark); /* Borda escura */
+    background-color: #333; /* Fundo escuro */
+    border: 1px solid #555; /* Borda escura */
     color: white; /* Texto branco */
 }
 
@@ -609,13 +596,13 @@ body.dark-mode .checkout:hover {
 
 /* Empty Cart Message */
 body.dark-mode .cart-page p {
-    color: var(--text-grey); /* Texto mais claro para mensagem */
+    color: #bbb; /* Texto mais claro para mensagem */
 }
 
 /* Estilo geral */
 body.dark-mode {
     color: white; /* Texto claro */
-    background-color: var(--background-dark); /* Fundo escuro */
+    background-color: #121212; /* Fundo escuro */
 }
 
 /* Seção do catálogo */
@@ -624,13 +611,13 @@ body.dark-mode .catalog {
 }
 
 body.dark-mode .catalog h1 {
-    color: var(--highlight-pink); /* Título em rosa vibrante */
+    color: #e91e63; /* Título em rosa vibrante */
 }
 
 /* Catalog Grid Items */
 body.dark-mode .catalog-item {
     background-color: #2b2b2b; /* Fundo escuro */
-    border: 1px solid var(--border-dark); /* Borda escura */
+    border: 1px solid #555; /* Borda escura */
 }
 
 body.dark-mode .catalog-item:hover {
@@ -650,16 +637,16 @@ body.dark-mode .product-img {
 /* Sizes List Styling */
 body.dark-mode .size-ball {
     background-color: #444; /* Fundo escuro */
-    color: var(--highlight-pink); /* Texto rosa vibrante */
+    color: #e91e63; /* Texto rosa vibrante */
 }
 
 /* "See Details" Button */
 body.dark-mode .see-details-button {
-    background: var(--gradient-pink); /* Fundo vibrante */
+    background: linear-gradient(135deg, #ff99cc, #ff3399); /* Fundo vibrante */
 }
 
 body.dark-mode .see-details-button:hover {
-    background-color: var(--highlight-pink); /* Rosa mais escuro */
+    background-color: #e91e63; /* Rosa mais escuro */
 }
 
 /* Admin Controls: Edit and Delete Buttons */
@@ -682,33 +669,33 @@ body.dark-mode .delete-button:hover {
 /* Styles for the "No Products" message */
 body.dark-mode .no-products,
 body.dark-mode .no-products-2 {
-    color: var(--text-grey); /* Cinza claro */
+    color: #bbb; /* Cinza claro */
 }
 
 /* Add Product Button */
 body.dark-mode .add-product-button {
-    background: var(--gradient-pink); /* Rosa vibrante */
+    background: linear-gradient(135deg, #ff99cc, #ff3399); /* Rosa vibrante */
 }
 
 body.dark-mode .add-product-button:hover {
-    background-color: var(--highlight-pink); /* Rosa mais escuro */
+    background-color: #e91e63; /* Rosa mais escuro */
 }
 
 /* General Reset */
 body.dark-mode, html.dark-mode {
-    background-color: var(--background-dark);
+    background-color: #121212;
     color: white; /* Texto claro para fundo escuro */
   }
   
   /* Main */
   body.dark-mode main {
     color: white;
-    background-color: var(--background-lighter-dark); /* Fundo escuro para o conteúdo principal */
+    background-color: #1e1e1e; /* Fundo escuro para o conteúdo principal */
   }
   
   /* Sidebar */
   body.dark-mode .sidebar {
-    background-color: var(--background-grey); /* Fundo escuro */
+    background-color: #2c2c2c; /* Fundo escuro */
   }
   
   body.dark-mode .sidebar ul li a {
@@ -731,7 +718,7 @@ body.dark-mode, html.dark-mode {
   
   /* Header */
   body.dark-mode .header {
-    background-color: var(--background-input); /* Fundo escuro */
+    background-color: #333; /* Fundo escuro */
     color: white; /* Texto branco */
   }
   
@@ -752,13 +739,13 @@ body.dark-mode, html.dark-mode {
   
   /* Search Bar */
   body.dark-mode .search-bar input {
-    background-color: var(--background-input); /* Fundo escuro */
+    background-color: #333; /* Fundo escuro */
     color: white; /* Texto branco */
-    border-color: var(--border-dark); /* Borda escura */
+    border-color: #555; /* Borda escura */
   }
   
   body.dark-mode .search-bar-suggestions {
-    background-color: var(--background-input); /* Fundo escuro */
+    background-color: #333; /* Fundo escuro */
     color: white; /* Texto branco */
   }
   
@@ -778,7 +765,7 @@ body.dark-mode, html.dark-mode {
   
   /* Cart Dropdown */
   body.dark-mode .cart-dropdown {
-    background-color: var(--background-grey); /* Fundo escuro */
+    background-color: #2c2c2c; /* Fundo escuro */
     color: white; /* Texto branco */
   }
   
@@ -792,7 +779,7 @@ body.dark-mode, html.dark-mode {
   
   /* Profile Dropdown (Unlogged) */
   body.dark-mode .profile-dropdown-unlogged {
-    background-color: var(--background-grey); /* Fundo escuro */
+    background-color: #2c2c2c; /* Fundo escuro */
     color: white; /* Texto branco */
   }
   
@@ -818,7 +805,7 @@ body.dark-mode, html.dark-mode {
   }
   
   body.dark-mode .footer-links a:hover {
-    color: var(--highlight-pink); /* Cor de destaque no hover */
+    color: #e91e63; /* Cor de destaque no hover */
   }
   
   /* Social Icons */
@@ -827,7 +814,7 @@ body.dark-mode, html.dark-mode {
   }
   
   body.dark-mode .social-icon:hover {
-    color: var(--highlight-pink); /* Cor de destaque no hover */
+    color: #e91e63; /* Cor de destaque no hover */
   }
   
   /* Dark Mode Button */
@@ -842,7 +829,7 @@ body.dark-mode, html.dark-mode {
   
   /* Checkout Container */
 body.dark-mode .checkout-container {
-    background: var(--background-lighter-dark); /* Fundo escuro */
+    background: #1e1e1e; /* Fundo escuro */
     color: white; /* Texto claro */
     box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1); /* Sombra leve */
 }
@@ -850,7 +837,7 @@ body.dark-mode .checkout-container {
 /* Headers */
 body.dark-mode .checkout-container h1,
 body.dark-mode .checkout-container h2 {
-    color: var(--highlight-pink); /* Rosa vibrante */
+    color: #e91e63; /* Rosa vibrante */
 }
 
 /* Order Summary */
@@ -866,22 +853,22 @@ body.dark-mode .payment-options label {
 
 /* Payment Form */
 body.dark-mode .payment-form label {
-    color: var(--text-grey-light); /* Texto em cinza claro */
+    color: #ccc; /* Texto em cinza claro */
 }
 
 body.dark-mode .payment-form input {
-    background: var(--background-input); /* Fundo escuro */
+    background: #333; /* Fundo escuro */
     color: white; /* Texto claro */
-    border: 1px solid var(--border-dark); /* Borda escura */
+    border: 1px solid #555; /* Borda escura */
 }
 
 /* Submit Button */
 body.dark-mode .btn-submit {
-    background: var(--highlight-pink); /* Rosa vibrante */
+    background: #e91e63; /* Rosa vibrante */
 }
 
 body.dark-mode .btn-submit:hover {
-    background: var(--highlight-pink); /* Rosa mais escuro */
+    background: #e91e63; /* Rosa mais escuro */
 }
 
 /* Pix QR Code */
@@ -895,7 +882,7 @@ body.dark-mode #boleto-code {
 }
 /* Geral */
 body.dark-mode {
-    background-color: var(--background-dark); /* Fundo escuro */
+    background-color: #121212; /* Fundo escuro */
     color: #fff; /* Texto branco */
 }
 
@@ -964,7 +951,7 @@ body.dark-mode .explore-button:hover {
 
 /* General Reset */
 body.dark-mode, html.dark-mode {
-    background-color: var(--background-dark); /* Fundo escuro */
+    background-color: #121212; /* Fundo escuro */
     color: #fff; /* Texto branco */
   }
   
@@ -981,38 +968,38 @@ body.dark-mode, html.dark-mode {
   
   /* Card Header */
   body.dark-mode .card-header h2 {
-    color: var(--highlight-pink); /* Título em rosa vibrante */
+    color: #e91e63; /* Título em rosa vibrante */
   }
   
   /* Card Content */
   body.dark-mode .card-content-area label {
-    color: var(--text-grey); /* Texto em cinza claro */
+    color: #bbb; /* Texto em cinza claro */
   }
   
   /* Card Input Styling */
   body.dark-mode .card-content-area input {
-    background-color: var(--background-input); /* Fundo escuro */
+    background-color: #333; /* Fundo escuro */
     color: white; /* Texto claro */
-    border-color: var(--border-dark); /* Borda mais escura */
+    border-color: #555; /* Borda mais escura */
   }
   
   body.dark-mode .card-content-area input:focus {
     outline-color: #ff66b2; /* Cor do contorno em rosa vibrante */
-    border-color: var(--highlight-pink); /* Borda mais vibrante */
+    border-color: #e91e63; /* Borda mais vibrante */
   }
   
   /* Submit Button */
   body.dark-mode .card-footer input.submit {
-    background: var(--gradient-pink); /* Cor do botão em rosa vibrante */
+    background: linear-gradient(135deg, #ff99cc, #ff3399); /* Cor do botão em rosa vibrante */
   }
   
   body.dark-mode .card-footer input.submit:hover {
-    background-color: var(--highlight-pink); /* Rosa mais escuro no hover */
+    background-color: #e91e63; /* Rosa mais escuro no hover */
   }
   
   /* Forgotten Password Link */
   body.dark-mode .card-footer .recuperar_senha {
-    color: var(--text-grey); /* Texto em cinza claro */
+    color: #bbb; /* Texto em cinza claro */
   }
   
   /* Error Message */
@@ -1022,7 +1009,7 @@ body.dark-mode, html.dark-mode {
   
   /* General Reset */
 body.dark-mode, html.dark-mode {
-    background-color: var(--background-dark); /* Fundo escuro */
+    background-color: #121212; /* Fundo escuro */
     color: #fff; /* Texto branco */
   }
   
@@ -1048,48 +1035,48 @@ body.dark-mode, html.dark-mode {
   }
   
   body.dark-mode .product-description {
-    color: var(--text-grey-light); /* Texto em cinza claro */
+    color: #ccc; /* Texto em cinza claro */
   }
   
   /* Product Price */
   body.dark-mode .product-price {
-    color: var(--highlight-pink); /* Preço em rosa vibrante */
+    color: #e91e63; /* Preço em rosa vibrante */
   }
   
   /* Quantity Selector */
   body.dark-mode .product-quantity label {
-    color: var(--text-grey); /* Texto em cinza claro */
+    color: #bbb; /* Texto em cinza claro */
   }
   
   body.dark-mode .product-quantity input {
-    background-color: var(--background-input); /* Fundo escuro */
+    background-color: #333; /* Fundo escuro */
     color: white; /* Texto branco */
-    border-color: var(--border-dark); /* Borda escura */
+    border-color: #555; /* Borda escura */
   }
   
   body.dark-mode .product-quantity input:focus {
-    border-color: var(--highlight-pink); /* Cor do foco em rosa */
+    border-color: #e91e63; /* Cor do foco em rosa */
     outline-color: #ff66b2;
   }
   
   /* Add to Cart Button */
   body.dark-mode .add-to-cart-button {
-    background: var(--gradient-pink); /* Rosa vibrante */
+    background: linear-gradient(135deg, #ff99cc, #ff3399); /* Rosa vibrante */
   }
   
   body.dark-mode .add-to-cart-button:hover {
-    background-color: var(--highlight-pink); /* Rosa mais escuro no hover */
+    background-color: #e91e63; /* Rosa mais escuro no hover */
   }
   
   /* Product Size */
   body.dark-mode .product-size label {
-    color: var(--text-grey); /* Texto em cinza claro */
+    color: #bbb; /* Texto em cinza claro */
   }
   
   body.dark-mode .product-size select {
-    background-color: var(--background-input); /* Fundo escuro */
+    background-color: #333; /* Fundo escuro */
     color: white; /* Texto branco */
-    border-color: var(--border-dark); /* Borda escura */
+    border-color: #555; /* Borda escura */
   }
   
   /* Modal styles */
@@ -1099,7 +1086,7 @@ body.dark-mode, html.dark-mode {
   }
   
   body.dark-mode .close {
-    color: var(--text-grey); /* Cor mais clara para o ícone de fechar */
+    color: #bbb; /* Cor mais clara para o ícone de fechar */
   }
   
   body.dark-mode .close:hover,
@@ -1109,7 +1096,7 @@ body.dark-mode, html.dark-mode {
   
   /* General Reset */
 body.dark-mode, html.dark-mode {
-    background-color: var(--background-dark); /* Fundo escuro */
+    background-color: #121212; /* Fundo escuro */
     color: #fff; /* Texto branco */
   }
   
@@ -1126,41 +1113,41 @@ body.dark-mode, html.dark-mode {
   
   /* Card Header */
   body.dark-mode .card-header h2 {
-    color: var(--highlight-pink); /* Título em rosa vibrante */
+    color: #e91e63; /* Título em rosa vibrante */
   }
   
   /* Card Content */
   body.dark-mode .card-content-area label {
-    color: var(--text-grey); /* Texto em cinza claro */
+    color: #bbb; /* Texto em cinza claro */
   }
   
   body.dark-mode .card-content-area input {
-    background-color: var(--background-input); /* Fundo escuro */
+    background-color: #333; /* Fundo escuro */
     color: white; /* Texto claro */
-    border-color: var(--border-dark); /* Borda mais escura */
+    border-color: #555; /* Borda mais escura */
   }
   
   body.dark-mode .card-content-area input:focus {
     outline-color: #ff66b2; /* Cor de foco em rosa vibrante */
-    border-color: var(--highlight-pink); /* Borda mais vibrante */
+    border-color: #e91e63; /* Borda mais vibrante */
   }
   
   /* Submit Button */
   body.dark-mode .card-footer input.submit {
-    background: var(--gradient-pink); /* Rosa vibrante */
+    background: linear-gradient(135deg, #ff99cc, #ff3399); /* Rosa vibrante */
   }
   
   body.dark-mode .card-footer input.submit:hover {
-    background-color: var(--highlight-pink); /* Rosa mais escuro no hover */
+    background-color: #e91e63; /* Rosa mais escuro no hover */
   }
   
   /* Link for switching between login and register */
   body.dark-mode .card-footer .recuperar_senha {
-    color: var(--text-grey); /* Texto em cinza claro */
+    color: #bbb; /* Texto em cinza claro */
   }
   
   body.dark-mode .card-footer .recuperar_senha:hover {
-    color: var(--highlight-pink); /* Cor de destaque no hover */
+    color: #e91e63; /* Cor de destaque no hover */
   }
   
   /* Error Message */
@@ -1170,7 +1157,7 @@ body.dark-mode, html.dark-mode {
   
 /* Atualizações adicionais com tons vibrantes */
 body.dark-mode .header {
-    background: var(--gradient-pink);
+    background: linear-gradient(135deg, #ff99cc, #ff3399);
 }
 
 body.dark-mode .add-to-cart-button {
@@ -1179,7 +1166,7 @@ body.dark-mode .add-to-cart-button {
 }
 
 body.dark-mode .add-to-cart-button:hover {
-    background-color: var(--highlight-pink);
+    background-color: #e91e63;
 }
 
 body.dark-mode .card-footer input.submit {
@@ -1188,6 +1175,6 @@ body.dark-mode .card-footer input.submit {
 }
 
 body.dark-mode .card-footer input.submit:hover {
-    background: var(--highlight-pink);
+    background: #e91e63;
     color: white;
 }

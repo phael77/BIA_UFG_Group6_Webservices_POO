@@ -1,16 +1,21 @@
 {% extends "base-logged.html" %}
+<!-- Este comando estende o template "base-logged.html", que provavelmente contém o layout padrão para usuários autenticados (incluindo cabeçalho, rodapé, etc.). -->
 
 {% block title %}Checkout{% endblock %}
+<!-- O título da página será "Checkout", que aparecerá na aba do navegador. -->
 
 {% block content %}
+<!-- Este é o bloco de conteúdo principal da página, que será injetado no template base onde o conteúdo principal deve ser renderizado. -->
 
 <main class="checkout-container">
     <h1>Checkout</h1>
+    <!-- Título principal da página, indicando que esta é a página de "Checkout". -->
 
-    <!-- Resumo do Pedido -->
+    <!-- Resumo do Pedido e Seleção da Forma de Pagamento -->
     <section class="payment-section">
         <h2>Forma de Pagamento</h2>
         <div class="payment-options">
+            <!-- Opções de pagamento, onde o usuário pode escolher entre Pix, Boleto Bancário ou Cartão de Crédito/Débito. -->
             <label>
                 <input type="radio" name="payment" value="pix" onchange="togglePaymentFields()"> Pix
             </label>
@@ -22,57 +27,66 @@
             </label>
         </div>
 
-        <!-- Credit Card Payment Form -->
+        <!-- Formulário para pagamento com Cartão de Crédito -->
         <div id="credit-card-form">
             <form class="payment-form">
                 <div class="form-group">
                     <label for="card-number">Número do Cartão</label>
                     <input type="text" id="card-number" placeholder="0000 0000 0000 0000">
+                    <!-- Campo para inserir o número do cartão de crédito. -->
                 </div>
                 <div class="form-group">
                     <label for="card-name">Nome no Cartão</label>
                     <input type="text" id="card-name" placeholder="Nome completo">
+                    <!-- Campo para inserir o nome do titular do cartão. -->
                 </div>
                 <div class="form-group">
                     <label for="card-expiry">Validade</label>
                     <input type="text" id="card-expiry" placeholder="MM/AA">
+                    <!-- Campo para inserir a data de validade do cartão (MM/AA). -->
                 </div>
                 <div class="form-group">
                     <label for="card-cvv">CVV</label>
                     <input type="text" id="card-cvv" placeholder="123">
+                    <!-- Campo para inserir o CVV do cartão de crédito. -->
                 </div>
                 <button type="submit" class="btn-submit">Confirmar Pagamento</button>
+                <!-- Botão para confirmar o pagamento com cartão de crédito. -->
             </form>
         </div>
 
-        <!-- Pix Payment Form -->
+        <!-- Formulário para pagamento via Pix -->
         <div id="pix-form" style="display:none;">
             <form class="payment-form">
                 <p>Pagamento via Pix selecionado. Realize a transferência para a chave informada após a confirmação do pedido.</p>
                 <button type="submit" class="btn-submit">Confirmar Pagamento</button>
+                <!-- Instrução sobre pagamento via Pix e botão para confirmar. -->
             </form>
         </div>
 
-        <!-- QR Code for Pix -->
+        <!-- Seção do QR Code para pagamento via Pix -->
         <div id="pix-section" class="payment-details hidden">
             <h3>QR Code do Pix</h3>
             <img id="pix-qr-code" src="https://via.placeholder.com/200" alt="QR Code Pix">
             <p>Escaneie o QR Code com seu aplicativo bancário para realizar o pagamento.</p>
+            <!-- O QR Code para pagamento via Pix é gerado aqui. O usuário pode escanear o código para realizar o pagamento. -->
         </div>
 
-        <!-- Boleto Payment Form -->
+        <!-- Formulário para pagamento via Boleto Bancário -->
         <div id="boleto-form" style="display:none;">
             <form class="payment-form">
                 <p>Pagamento via Boleto Bancário selecionado. Após a confirmação, o boleto será gerado.</p>
                 <button type="submit" class="btn-submit">Confirmar Pagamento</button>
+                <!-- Instrução sobre pagamento via boleto e botão para confirmar. -->
             </form>
         </div>
 
-        <!-- Barcode for Boleto -->
+        <!-- Seção do Código de Barras do Boleto -->
         <div id="boleto-section" class="payment-details hidden">
             <h3>Código de Barras do Boleto</h3>
             <p id="boleto-code">1234 5678 9101 1121 3141 5161 7181</p>
             <p>Copie o código de barras e pague no aplicativo do seu banco ou casa lotérica.</p>
+            <!-- O código de barras do boleto é exibido aqui para que o usuário possa copiá-lo e pagar no banco ou casa lotérica. -->
         </div>
 
     </section>
@@ -80,3 +94,4 @@
 </main>
 
 {% endblock %}
+<!-- Fim do bloco de conteúdo principal. -->

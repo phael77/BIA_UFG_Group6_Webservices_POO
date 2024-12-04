@@ -1,50 +1,95 @@
 {% extends "base.html" %}
+<!-- Este template herda do "base.html", que define o layout geral da página, como cabeçalho, rodapé, etc. O conteúdo da página será inserido no bloco 'content' desse template base. -->
 
 {% block title %}Home - Empresa Confiável{% endblock %}
+<!-- Define o título da página para "Home - Empresa Confiável", que será exibido na aba do navegador. -->
 
 {% block content %}
+<!-- Define o conteúdo principal da página. Esse conteúdo será inserido no bloco 'content' do template base.html. -->
 
+<!-- Link para o arquivo de estilo CSS da página -->
 <link rel="stylesheet" href="{{ url_for('static', filename='styles/index.css') }}">
+<!-- O link usa o método 'url_for' do Flask para gerar o URL correto para o arquivo CSS, que será carregado na página. -->
 
+<!-- Seção de Promoções -->
 <div class="promo-section">
     <h2 class="section-title">Promoções</h2>
+    <!-- Título da seção de promoções, estilizado com a classe 'section-title'. -->
+
+    <!-- Carrossel de imagens promocionais -->
     <div class="carousel">
         <img src="https://via.placeholder.com/600x400" alt="Promoção 1">
+        <!-- Primeira imagem do carrossel, representando a Promoção 1. -->
+
         <img src="https://via.placeholder.com/600x400" alt="Promoção 2">
+        <!-- Segunda imagem do carrossel, representando a Promoção 2. -->
+
         <img src="https://via.placeholder.com/600x400" alt="Promoção 3">
+        <!-- Terceira imagem do carrossel, representando a Promoção 3. -->
     </div>
 </div>
 
+<!-- Seção de Modelos -->
 <div class="models-section">
     <h2 class="section-title">Modelos</h2>
+    <!-- Título da seção de modelos, também estilizado com a classe 'section-title'. -->
+
+    <!-- Menu de filtro para categorias de modelos -->
     <div class="filter-menu">
         <button>Conjuntos</button>
+        <!-- Botão para filtrar por "Conjuntos" -->
+
         <button>Blusas</button>
+        <!-- Botão para filtrar por "Blusas" -->
+
         <button>Calças</button>
+        <!-- Botão para filtrar por "Calças" -->
+
         <button>Shorts</button>
+        <!-- Botão para filtrar por "Shorts" -->
+
         <button>Bolsas</button>
+        <!-- Botão para filtrar por "Bolsas" -->
     </div>
+
+    <!-- Grid de modelos -->
     <div class="model-grid">
+        <!-- Cada "model-card" representa um item na coleção de modelos -->
         <div class="model-card">
             <img src="https://via.placeholder.com/200x300" alt="Modelo 1">
+            <!-- Imagem do Modelo 1 -->
             <p>Conjunto de Babado Listrado</p>
+            <!-- Descrição do Modelo 1 -->
         </div>
+
         <div class="model-card">
             <img src="https://via.placeholder.com/200x300" alt="Modelo 2">
+            <!-- Imagem do Modelo 2 -->
             <p>Conjunto Pantalona Linho</p>
+            <!-- Descrição do Modelo 2 -->
         </div>
+
         <div class="model-card">
             <img src="https://via.placeholder.com/200x300" alt="Modelo 3">
+            <!-- Imagem do Modelo 3 -->
             <p>Conjunto Social</p>
+            <!-- Descrição do Modelo 3 -->
         </div>
+
         <div class="model-card">
             <img src="https://via.placeholder.com/200x300" alt="Modelo 4">
+            <!-- Imagem do Modelo 4 -->
             <p>Conjunto Plus Size</p>
+            <!-- Descrição do Modelo 4 -->
         </div>
     </div>
 </div>
 
+<!-- Seção de "Explore More" -->
 <div class="explore-section">
     <a href="#" class="explore-button">Explore More →</a>
+    <!-- Link com a classe 'explore-button' que permite ao usuário explorar mais produtos ou informações. -->
 </div>
+
 {% endblock %}
+<!-- Fim do bloco de conteúdo -->
