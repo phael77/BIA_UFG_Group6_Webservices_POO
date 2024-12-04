@@ -8,30 +8,6 @@
     <h1>Checkout</h1>
 
     <!-- Resumo do Pedido -->
-    <section class="order-summary">
-        <h2>Resumo do Pedido</h2>
-        {% if cart %}
-            <div class="order-items">
-                {% for item in cart %}
-                    <div class="item">
-                        <img src="{{ url_for('static', filename='images/' + item['image']) }}" alt="{{ item['name'] }}" class="order-item-image">
-                        <div class="item-info">
-                            <h3>{{ item['name'] }}</h3>
-                            <p>Preço: R$ {{ '%.2f' % item['price'] }}</p>
-                            <p>Tamanho: {{ item['size'] }}</p>
-                            <p>Quantidade: {{ item['quantity'] }}</p>
-                            <p>Total: R$ {{ '%.2f' % (item['price'] * item['quantity']) }}</p>
-                        </div>
-                    </div>
-                {% endfor %}
-            </div>
-            <p class="order-total">Subtotal: R$ {{ '%.2f' % total_price }}</p>
-        {% else %}
-            <p>Seu carrinho está vazio.</p>
-        {% endif %}
-    </section>
-
-    <!-- Formulário de Pagamento -->
     <section class="payment-section">
         <h2>Forma de Pagamento</h2>
         <div class="payment-options">
@@ -48,7 +24,9 @@
                 Boleto Bancário
             </label>
         </div>
-        <form class="payment-form">
+    
+        <!-- Formulário de Cartão -->
+        <form class="payment-form" id="credit-card-form">
             <div class="form-group">
                 <label for="card-number">Número do Cartão</label>
                 <input type="text" id="card-number" placeholder="0000 0000 0000 0000">
@@ -67,7 +45,22 @@
             </div>
             <button type="submit" class="btn-submit">Confirmar Pagamento</button>
         </form>
+    
+        <!-- QR Code para Pix -->
+        <div id="pix-section" class="payment-details hidden">
+            <h3>QR Code do Pix</h3>
+            <img id="pix-qr-code" src="https://via.placeholder.com/200" alt="QR Code Pix">
+            <p>Escaneie o QR Code com seu aplicativo bancário para realizar o pagamento.</p>
+        </div>
+    
+        <!-- Código de Barras para Boleto -->
+        <div id="boleto-section" class="payment-details hidden">
+            <h3>Código de Barras do Boleto</h3>
+            <p id="boleto-code">1234 5678 9101 1121 3141 5161 7181</p>
+            <p>Copie o código de barras e pague no aplicativo do seu banco ou casa lotérica.</p>
+        </div>
     </section>
+    
 </main>
 
 {% endblock %}
