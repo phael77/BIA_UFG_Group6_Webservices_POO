@@ -1,29 +1,26 @@
-    // Function to toggle between the different payment methods' forms
-    function togglePaymentFields() {
-        // Get all payment form sections
-        var creditCardForm = document.getElementById('credit-card-form');
-        var pixForm = document.getElementById('pix-form');
-        var boletoForm = document.getElementById('boleto-form');
-        
-        // Get the selected payment method
-        var paymentMethod = document.querySelector('input[name="payment"]:checked').value;
-        
-        // Hide all forms initially
-        creditCardForm.style.display = 'none';
-        pixForm.style.display = 'none';
-        boletoForm.style.display = 'none';
-        
-        // Show the corresponding form based on the selected payment method
-        if (paymentMethod === 'credit-card') {
-            creditCardForm.style.display = 'block';
-        } else if (paymentMethod === 'pix') {
-            pixForm.style.display = 'block';
-        } else if (paymentMethod === 'boleto') {
-            boletoForm.style.display = 'block';
-        }
+function togglePaymentFields() {
+    // Hide all payment form sections first
+    document.getElementById('credit-card-form').style.display = 'none';
+    document.getElementById('pix-form').style.display = 'none';
+    document.getElementById('boleto-form').style.display = 'none';
+    document.getElementById('pix-section').style.display = 'none';
+    document.getElementById('boleto-section').style.display = 'none';
+    
+    // Show relevant payment form based on selection
+    const selectedPaymentMethod = document.querySelector('input[name="payment"]:checked').value;
+    
+    if (selectedPaymentMethod === 'pix') {
+        document.getElementById('pix-form').style.display = 'block';
+        document.getElementById('pix-section').style.display = 'block';
+    } else if (selectedPaymentMethod === 'boleto') {
+        document.getElementById('boleto-form').style.display = 'block';
+        document.getElementById('boleto-section').style.display = 'block';
+    } else {
+        document.getElementById('credit-card-form').style.display = 'block';
     }
+}
 
-    // Call the function on page load to show the correct form based on the default selection
-    window.onload = function() {
-        togglePaymentFields();
-    }
+// Initialize the payment form based on the default selected payment method
+document.addEventListener("DOMContentLoaded", function() {
+    togglePaymentFields();
+});
