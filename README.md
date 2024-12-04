@@ -18,21 +18,7 @@ Funcionalidades:
 - Área administrativa para gerenciamento de produtos
 - Autenticação e controle de acesso com base no perfil do usuário
 
-Estrutura do Projeto
-
-├── app
-│   ├── cart.json                # Armazena os dados do carrinho de compras
-│   ├── client.py                # Contém as rotas e lógica para a parte cliente da aplicação
-│   ├── __init__.py              # Inicializa o pacote 'app'
-│   ├── products.json            # Contém os dados dos produtos
-│   ├── __pycache__              # Arquivos compilados automaticamente pelo Python
-│   ├── static                   # Arquivos estáticos (imagens, scripts JS, CSS)
-│   ├── templates                # Templates HTML para renderização das páginas
-│   └── users.json               # Armazena os dados dos usuários
-├── app.py                        # Arquivo principal da aplicação Flask
-├── arquitetura.txt              # Descrição da arquitetura do sistema
-├── README.md                    # Este arquivo de documentação
-└── venv                          # Ambiente virtual contendo as dependências
+Estrutura do Projeto disponível em 'estrutura.txt'
 
 Tecnologias Utilizadas
 
