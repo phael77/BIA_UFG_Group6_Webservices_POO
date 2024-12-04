@@ -95,3 +95,32 @@ goToCheckoutButton.addEventListener("click", () => {
     checkoutPage.classList.remove("hidden");
 });
 
+// Seleciona os elementos dos métodos de pagamento
+const paymentOptions = document.querySelectorAll('input[name="payment"]');
+const creditCardForm = document.getElementById("credit-card-form");
+const pixSection = document.getElementById("pix-section");
+const boletoSection = document.getElementById("boleto-section");
+
+// Função para alternar a exibição dos métodos de pagamento
+function handlePaymentChange(event) {
+    const selectedPayment = event.target.value;
+
+    // Oculta todas as seções inicialmente
+    creditCardForm.classList.add("hidden");
+    pixSection.classList.add("hidden");
+    boletoSection.classList.add("hidden");
+
+    // Exibe a seção correspondente ao método selecionado
+    if (selectedPayment === "credit-card") {
+        creditCardForm.classList.remove("hidden");
+    } else if (selectedPayment === "pix") {
+        pixSection.classList.remove("hidden");
+    } else if (selectedPayment === "boleto") {
+        boletoSection.classList.remove("hidden");
+    }
+}
+
+// Adiciona o evento de alteração aos botões de pagamento
+paymentOptions.forEach(option => {
+    option.addEventListener("change", handlePaymentChange);
+});
