@@ -1,15 +1,54 @@
-app
--templates
---templs
----formTemplate.html
---admin.html
---index.html
---login.html
--static
---css
---img
---js
-__init__.py
-admin.py
-client.py
-mainFlask.py
+├── app
+│   ├── cart.json                # Armazena os dados do carrinho de compras (ex.: itens, quantidade, preço)
+│   ├── client.py                # Contém as rotas e lógica para a parte cliente da aplicação
+│   ├── __init__.py              # Arquivo que inicializa o pacote 'app' (necessário para importar funções e variáveis)
+│   ├── products.json            # Contém informações sobre os produtos da loja (ex.: nome, preço, descrição)
+│   ├── static                   # Contém arquivos estáticos como imagens, JavaScript e CSS
+│   │   ├── images               # Pasta com imagens do site (ex.: fotos de produtos)
+│   │   │   ├── 136524.png       # Exemplo de imagem de produto
+│   │   │   ├── gandalf2.jpg     # Outra imagem (ex.: foto promocional ou de produto)
+│   │   │   ├── gandalf3.jpg     # Outra imagem
+│   │   │   └── gandalf.jpg      # Mais uma imagem
+│   │   ├── scripts              # Pasta com arquivos JavaScript que controlam a interação no front-end
+│   │   │   ├── auth.js          # Gerencia a autenticação (login, registro de usuário)
+│   │   │   ├── checkout.js      # Lógica para o processo de checkout (finalização de compras)
+│   │   │   ├── darkmode.js      # Lida com a ativação/desativação do modo escuro
+│   │   │   ├── product.js       # Lógica relacionada aos produtos (ex.: visualização ou edição de produtos)
+│   │   │   ├── search.js        # Gerencia a pesquisa de produtos ou conteúdos no site
+│   │   │   └── sidebar.js       # Controla interações com a barra lateral (menus, navegação)
+│   │   └── styles               # Contém os arquivos CSS para estilizar o site
+│   │       ├── admin_product.css # Estilo específico para a página de administração de produtos
+│   │       ├── base.css         # Estilos básicos, aplicados em várias páginas
+│   │       ├── cart.css         # Estilo para a página de carrinho de compras
+│   │       ├── catalogue.css    # Estilo para a página de catálogo de produtos
+│   │       ├── checkout.css     # Estilo para a página de checkout
+│   │       ├── darkmode-base.css # Estilo base para o modo escuro
+│   │       ├── darkmode.css     # Estilos do modo escuro, talvez para todo o site
+│   │       ├── darkmode_with_palette.css # Estilos para o modo escuro com paleta personalizada
+│   │       ├── index.css        # Estilo para a página inicial do site
+│   │       ├── login.css        # Estilo para a página de login
+│   │       ├── product.css      # Estilo para a página de produtos
+│   │       └── register.css     # Estilo para a página de registro
+│   ├── templates                # Pasta com os templates HTML para as diferentes páginas da aplicação
+│   │   ├── add_product.html     # Página para adicionar um novo produto
+│   │   ├── admin_product.html  # Página de administração de produtos
+│   │   ├── base-admin.html      # Template base para páginas administrativas
+│   │   ├── base.html            # Template base (geral) usado em várias páginas
+│   │   ├── base-logged.html     # Template base para usuários logados
+│   │   ├── cart.html            # Página de carrinho de compras
+│   │   ├── catalogue-admin.html # Página do catálogo de produtos para administradores
+│   │   ├── catalogue.html       # Página do catálogo de produtos para clientes
+│   │   ├── catalogue-logged.html # Página do catálogo de produtos para usuários logados
+│   │   ├── checkout.html        # Página de finalização de compra
+│   │   ├── index-admin.html     # Página inicial para administradores
+│   │   ├── index.html           # Página inicial pública
+│   │   ├── index-logged.html    # Página inicial para usuários logados
+│   │   ├── login.html           # Página de login
+│   │   ├── product.html         # Página de detalhes do produto
+│   │   ├── register.html        # Página de registro de novos usuários
+│   │   └── user_product.html    # Página com produtos específicos de um usuário
+│   └── users.json               # Armazena os dados dos usuários (ex.: nome de usuário, senha, perfil)
+├── app.py                        # Arquivo principal que inicializa a aplicação Flask
+├── arquitetura.txt              # Descrição da arquitetura do projeto
+├── README.md                    # Documentação do projeto (como rodar a aplicação, requisitos, etc.)
+└── venv                          # Ambiente virtual (venv) que contém as dependências da aplicação
