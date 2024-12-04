@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "base-logged.html" %}
 
 {% block title %}Checkout{% endblock %}
 
@@ -10,9 +10,25 @@
     <!-- Resumo do Pedido -->
     <section class="order-summary">
         <h2>Resumo do Pedido</h2>
-        <div class="item">
-           
-        </div>
+        {% if cart %}
+            <div class="order-items">
+                {% for item in cart %}
+                    <div class="item">
+                        <img src="{{ url_for('static', filename='images/' + item['image']) }}" alt="{{ item['name'] }}" class="order-item-image">
+                        <div class="item-info">
+                            <h3>{{ item['name'] }}</h3>
+                            <p>Preço: R$ {{ '%.2f' % item['price'] }}</p>
+                            <p>Tamanho: {{ item['size'] }}</p>
+                            <p>Quantidade: {{ item['quantity'] }}</p>
+                            <p>Total: R$ {{ '%.2f' % (item['price'] * item['quantity']) }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <p class="order-total">Subtotal: R$ {{ '%.2f' % total_price }}</p>
+        {% else %}
+            <p>Seu carrinho está vazio.</p>
+        {% endif %}
     </section>
 
     <!-- Formulário de Pagamento -->

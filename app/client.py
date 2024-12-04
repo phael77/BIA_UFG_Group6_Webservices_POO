@@ -57,11 +57,6 @@ def create_user():
 # Página inicial
 @app.route("/")
 def home():
-    if 'username' in session:
-        if session.get('profile') == 1:
-            return redirect(url_for('home_loggedin'))
-        elif session.get('profile') == 2:
-            return redirect(url_for('home_admin'))
     return render_template('index.html')
 
 # Página do usuário logado
@@ -314,7 +309,8 @@ def remove_from_cart(product_id, size):
     session['cart'] = cart
     return redirect(url_for('cart'))
 
-@app.route('/checkout')
+@app.route("/checkout")
 def checkout():
-    # Your checkout logic here
-    return render_template('checkout.html')
+    cart = session.get('cart', [])
+    total_price = sum(item['price'] * item['quantity'] for item in cart)  # Calculate total price
+    return render_template('checkout.html', cart=cart, total_price=total_price)
