@@ -1,1 +1,12 @@
-[]
+[
+    {
+        "id": 1,
+        "name": "Rifa do BIA",
+        "description": "Por favor nos ajude",
+        "price": 2.5,
+        "sizes": [
+            "Compre"
+        ],
+        "image": null
+    }
+]
