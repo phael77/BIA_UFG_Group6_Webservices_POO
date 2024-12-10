@@ -1,5 +1,4 @@
 from flask import Flask
-import os
 
 # Criação do objeto Flask, que representa a aplicação web
 app = Flask(__name__)
