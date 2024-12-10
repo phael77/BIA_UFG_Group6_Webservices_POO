@@ -7,7 +7,7 @@
 │   ├── static                   # Arquivos estáticos (imagens, scripts JS, CSS)
 │   ├── templates                # Templates HTML para renderização das páginas
 │   └── users.json               # Armazena os dados dos usuários
-├── app.py                        # Arquivo principal da aplicação Flask
+├── app.py                       # Arquivo principal da aplicação Flask
 ├── arquitetura.txt              # Descrição da arquitetura do sistema
 ├── README.md                    # Este arquivo de documentação
-└── venv                          # Ambiente virtual contendo as dependências
+└── venv                         # Ambiente virtual contendo as dependências
