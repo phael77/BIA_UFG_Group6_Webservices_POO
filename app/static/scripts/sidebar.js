@@ -1,5 +1,3 @@
-// sidebar.js
-
 // Obtém referências para a barra lateral (sidebar), o botão de alternância (toggle) e o título do site
 const sidebar = document.querySelector('.sidebar');
 const toggleButton = document.querySelector('.toggle-sidebar');
