@@ -34,11 +34,25 @@
     {
         "id": 5,
         "name": "André",
-        "description": "Eu meso",
+        "description": "Eu mesmo",
         "price": 10000000000000.0,
         "sizes": [
             "G",
             "GG"
+        ],
+        "image": null
+    },
+    {
+        "id": 6,
+        "name": "Lucas o vendedor",
+        "description": "Vendo coisas!",
+        "price": 150.0,
+        "sizes": [
+            "P",
+            "M",
+            "G",
+            "GG",
+            "Super G"
         ],
         "image": null
     }

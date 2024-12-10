@@ -33,5 +33,10 @@
         "username": "2",
         "password": "2",
         "profile": 1
+    },
+    {
+        "username": "Lucas ",
+        "password": "123",
+        "profile": 1
     }
 ]
